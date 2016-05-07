@@ -38,7 +38,7 @@ const callStep1 = function (req, res) {
                   {
                       _attr: {
                           action: actionUrl,
-                          method: `GET`,
+                          method: `POST`,
                           timeout: 10,
                           numDigits : 1,
                           finishOnKey: 'any digit'

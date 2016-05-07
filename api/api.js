@@ -8,8 +8,12 @@ module.exports = function (app) {
     .get(Endpoints.fbWebhookEndpoint.challengeToken)
     .post(Endpoints.fbWebhookEndpoint.handleIncomingMessage);
 
-  app.get('/twilio/call/step1', Endpoints.twilioXmlEndpoint.callStep1);
-  app.get('/twilio/call/step2', Endpoints.twilioXmlEndpoint.callStep2);
+  app.route('/twilio/call/step1')
+      .get(Endpoints.twilioXmlEndpoint.callStep1)
+      .post(Endpoints.twilioXmlEndpoint.callStep1);
+  app.route('/twilio/call/step2')
+      .get(Endpoints.twilioXmlEndpoint.callStep2)
+      .post(Endpoints.twilioXmlEndpoint.callStep2);
   app.get('/twilio/test', Endpoints.twilioXmlEndpoint.test);
 
   app.use(function(err, req, res, next) {
