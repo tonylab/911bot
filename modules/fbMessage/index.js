@@ -21,6 +21,6 @@ var handleFbPostback = function (sender, postback) {
 
 };
 
-export {
+module.exports = {
   handleFbMessage
 };
