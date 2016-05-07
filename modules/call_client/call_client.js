@@ -22,7 +22,7 @@ class CallClient {
             url: `${this.twilioXmlUrl}?caseId=${caseId}`
 
         }, function(err, responseData) {
-            console.log(`Call to ${responseData.from} was created!`);
+            console.log(`Call created from ${responseData.from} to ${responseData.to}`);
         });
     }
 }
