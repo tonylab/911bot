@@ -1,4 +1,4 @@
-import request from 'request';
+var request =  require('request');
 
 export var challengeToken =  function (req, res) {
   console.log('All req query', req.query);
