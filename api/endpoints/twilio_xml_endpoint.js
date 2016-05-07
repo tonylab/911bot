@@ -20,21 +20,21 @@ const callStep1 = function (req, res) {
   const caseObj = cases[caseId];
   const actionUrl = `twilio/call/step2`
   const xmlResponse = {
-      response : [
+      Response : [
           {
-              say: `This is an emergency call from ${caseObj.name}`
+              Say: `This is an emergency call from ${caseObj.name}`
           },
           {
-              pause: {_attr: {length: 2}}
+              Pause: {_attr: {length: 2}}
           },
           {
-              say: caseObj.message
+              Say: caseObj.message
           },
           {
-              pause: {_attr: {length: 2}}
+              Pause: {_attr: {length: 2}}
           },
           {
-              gather: [
+              Gather: [
                   {
                       _attr: {
                           action: actionUrl,
@@ -50,16 +50,16 @@ const callStep1 = function (req, res) {
               ]
           },
           {
-              say: `Please call ${caseObj.phoneNumber}`
+              Say: `Please call ${caseObj.phoneNumber}`
           },
           {
-              pause: {_attr: {length: 5}}
+              Pause: {_attr: {length: 5}}
           },
           {
-              say: `Please call ${caseObj.phoneNumber}`
+              Say: `Please call ${caseObj.phoneNumber}`
           },
           {
-              say: `Thank you and goodbye!`
+              Say: `Thank you and goodbye!`
           }
       ]
   };
