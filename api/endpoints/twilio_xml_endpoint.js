@@ -1,6 +1,7 @@
 const xml = require('xml');
 const cases = require('../../modules/cases_global')
-var settings = require('../../modules/settings')
+const settings = require('../../modules/settings')
+const Call911Client = require('../../modules/call_client/call_client')
 
 const callStep1 = function (req, res) {
   const caseId = req.query.caseId;
@@ -69,7 +70,14 @@ const callStep2 = function () {
 
 }
 
+const test = function (req, res) {
+    let client = new Call911Client('ACfb01ca8a5e0434e4e2bc38e9cd035b42', 'fb5566a6caae9ef9f4b75d1ef6cf5999', '+13342460557', `${settings.BASE_URI}/twilio/call/step1`, '+972525444544');
+    client.makeCall('test');
+    res.send('Made call to case id: test');
+}
+
 module.exports = {
   callStep1,
-  callStep2
+  callStep2,
+  test
 }

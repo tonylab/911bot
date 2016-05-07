@@ -1,4 +1,5 @@
 const twilio = require('twilio');
+const cases = require('../cases_global')
 
 class CallClient {
     constructor(twilioSid, twilioToken, twilioVerifiedPhoneNumber, twilioXmlUrl, dispatchCenterPhoneNumber) {
@@ -11,13 +12,15 @@ class CallClient {
     }
 
     makeCall(caseId) {
+        const caseObj = cases[caseId];
+
         this.client.makeCall({
             to: this.dispatchCenterPhoneNumber,
             from: this.twilioVerifiedPhoneNumber,
-            url: this.twilioXmlUrl
+            url: `${this.twilioXmlUrl}?caseId=${caseId}`
 
         }, function(err, responseData) {
-            console.log(responseData.from);
+            console.log(`Call to ${responseData.from} was created!`);
         });
     }
 }
