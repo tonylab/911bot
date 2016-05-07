@@ -18,7 +18,7 @@ var handleIncomingMessage =  function (req, res) {
     var sender = event.sender.id;
     var postback = event.postback;
 
-    var attachments = event.attachments;
+    var attachments = event.message.attachments;
     if (attachments != undefined && attachments.length > 0) {
       attachments.forEach(attachment => {
         console.log(attachment);
