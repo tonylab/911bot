@@ -73,7 +73,7 @@ const callStep2 = function () {
 }
 
 const test = function (req, res) {
-    let xmlUrl = `${settings.BASE_URI}/twilio/call/step1`
+    let xmlUrl = `${settings.BASE_URI}/twilio/call/step1?caseId=test`
     var client = new Call911Client('ACfb01ca8a5e0434e4e2bc38e9cd035b42', 'fb5566a6caae9ef9f4b75d1ef6cf5999', '+13342460557', xmlUrl, '+972525444544');
     client.makeCall('test');
     res.send(`Made call to case id: test with xml url = ${xmlUrl}`);
