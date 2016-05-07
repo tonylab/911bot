@@ -1,6 +1,6 @@
 var request =  require('request');
 
-export var challengeToken =  function (req, res) {
+var challengeToken =  function (req, res) {
   console.log('All req query', req.query);
   if (req.query['hub.verify_token'] === process.env.FACEBOOK_CHALANGE_RESPONCE) {
     res.send(req.query['hub.challenge']);
@@ -9,7 +9,7 @@ export var challengeToken =  function (req, res) {
   }
 };
 
-export var handleIncomingMessage =  function (req, res) {
+var handleIncomingMessage =  function (req, res) {
   var messagingEvents = req.body.entry[0].messaging;
   messagingEvents.forEach(event => {
     var sender = event.sender.id;
@@ -54,4 +54,9 @@ var getProfileInfo = function(userId){
       // });
     }
   });
+};
+
+module.exports = {
+  challengeToken,
+  handleIncomingMessage
 };
