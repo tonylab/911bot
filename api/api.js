@@ -1,4 +1,4 @@
-var Endpoints = require('endpoints');
+var Endpoints = require('./endpoints');
 
 
 module.exports = function (app) {
