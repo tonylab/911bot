@@ -17,12 +17,14 @@ var handleIncomingMessage =  function (req, res) {
     console.log(event);
     var sender = event.sender.id;
     var postback = event.postback;
-    var attachments = event.attachments;
 
-    attachments.forEach(attachment => {
-      console.log(attachment);
-    });
-    
+    var attachments = event.attachments;
+    if (attachments != undefined && attachments.length > 0) {
+      attachments.forEach(attachment => {
+        console.log(attachment);
+      });
+    }
+
     var text = event.message && event.message.text;
     FbMessage.receive.handleFbMessage(sender, postback, text);
   });
