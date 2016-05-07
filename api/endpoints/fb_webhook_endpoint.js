@@ -14,6 +14,7 @@ var handleIncomingMessage =  function (req, res) {
   var messagingEvents = req.body.entry[0].messaging;
   console.log(req.body);
   messagingEvents.forEach(event => {
+    console.log(event);
     var sender = event.sender.id;
     var postback = event.postback;
     var text = event.message && event.message.text;
