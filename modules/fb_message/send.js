@@ -1,3 +1,5 @@
+'use strict';
+
 var request = require('request'),
     moment = require('moment'),
     settings = require('../settings');

@@ -1,3 +1,5 @@
+'use strict';
+
 const twilio = require('twilio');
 const cases = require('../cases_global')
 

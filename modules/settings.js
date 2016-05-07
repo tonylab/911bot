@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     TWILIO_SID: process.env.TWILIO_SID,
     TWILIO_TOKEN: process.env.TWILIO_TOKEN,

@@ -1,3 +1,5 @@
+'use strict';
+
 var request =  require('request');
 var FbMessage = require('../../modules/fb_message');
 var settings = require('../../modules/settings')

@@ -1,3 +1,5 @@
+'use strict';
+
 const xml = require('xml');
 const cases = require('../../modules/cases_global')
 const settings = require('../../modules/settings')

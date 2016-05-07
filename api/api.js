@@ -1,5 +1,6 @@
-var Endpoints = require('./endpoints');
+'use strict';
 
+var Endpoints = require('./endpoints');
 
 module.exports = function (app) {
 
