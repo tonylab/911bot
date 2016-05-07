@@ -2,7 +2,7 @@ const xml = require('xml');
 
 const callStep1 = function (req, res) {
   const caseId = req.query.caseId;
-  if(!caseId) {
+  if (!caseId) {
     var error = new Error('Case id is missing');
     error.httpCode = 400;
     throw  error;
