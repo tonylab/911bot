@@ -1,41 +1,18 @@
 'use strict';
 
 var request = require('request'),
-    moment = require('moment'),
-    settings = require('../settings');
+  moment = require('moment'),
+  settings = require('../settings');
 
-
-const token = settings.FB_PAGE_TOKEN;
-
-var sendTextMessage = function (senderId, msgTxt) {
+var sendTextMessage = function (recipientId, msgTxt) {
   var messageData = {
     text: msgTxt
   };
 
-  var requestData = {
-    recipient: {id: senderId},
-    message: messageData
-  };
-
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + token,
-    method: 'POST',
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify(requestData)
-  }, function (error, response, body) {
-    if (error) {
-      console.log('Error sending message: ', error);
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error);
-    } else {
-      console.log(body);
-    }
-  });
+  sendMessageRequestToFacebook(recipientId, messageData);
 };
 
-var sendBubbles = function (senderId, bubbles) {
+var sendBubbles = function (recipientId, bubbles) {
   var messageData = {
     attachment: {
       type: "template",
@@ -45,13 +22,18 @@ var sendBubbles = function (senderId, bubbles) {
       }
     }
   };
+
+  sendMessageRequestToFacebook(recipientId, messageData);
+};
+
+var sendMessageRequestToFacebook = function (recipientId, msgData) {
   var requestData = {
-    recipient: {id: senderId},
-    message: messageData
+    recipient: {id: recipientId},
+    message: msgData
   };
 
   request({
-    url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + token,
+    url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + settings.FB_PAGE_TOKEN,
     method: 'POST',
     headers: {
       "content-type": "application/json"
