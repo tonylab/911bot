@@ -9,5 +9,4 @@ module.exports = function (app) {
 
   app.get('/twilio/call/step1', Endpoints.twilioXmlEndpoint.callStep1);
   app.get('/twilio/call/step2', Endpoints.twilioXmlEndpoint.callStep2);
-
 };
