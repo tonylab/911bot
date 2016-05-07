@@ -37,7 +37,10 @@ var handleFbAttachment = function (senderId, attachment) {
     return;
   }
   var type = attachment.type;
-  var url = attachment.payload && attachment.payload.url;
+  var url = (attachment.payload && attachment.payload.url)
+    || attachment.url;
+  var title = attachment.title;
+
   if (type == 'image') {
     // Handle incoming image
   } else if  (type == 'video') {
@@ -46,6 +49,7 @@ var handleFbAttachment = function (senderId, attachment) {
     // Handle incoming audio
   } else if (type == 'location') {
     // Handle incoming location
+    var coordinates = attachment.payload && attachment.payload.coordinates;
   }
 };
 
