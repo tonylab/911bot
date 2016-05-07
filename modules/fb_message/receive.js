@@ -32,7 +32,21 @@ var handleFbPostback = function (senderId, postback) {
 };
 
 var handleFbAttachment = function (senderId, attachment) {
-  
+  if (!attachment) {
+    console.error('handleFbAttachment must get attachment');
+    return;
+  }
+  var type = attachment.type;
+  var url = attachment.payload && attachment.payload.url;
+  if (type == 'image') {
+    // Handle incoming image
+  } else if  (type == 'video') {
+    // Handle incoming video
+  } else if (type == 'audio') {
+    // Handle incoming audio
+  } else if (type == 'location') {
+    // Handle incoming location
+  }
 };
 
 module.exports = {
