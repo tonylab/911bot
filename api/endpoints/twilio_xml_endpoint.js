@@ -7,6 +7,6 @@ const callStep2 = function () {
 }
 
 module.exports = {
-    callStep1,
-    callStep2
+  callStep1,
+  callStep2
 }
