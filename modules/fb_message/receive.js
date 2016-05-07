@@ -1,3 +1,5 @@
+var send = require('./send.js');
+
 /**
  * Handle new incoming message from facebook
  * @param sender
@@ -13,11 +15,11 @@ var handleFbMessage = function(sender, postback, text) {
   }
 };
 
-var handleFbText = function (sender, text) {
-
+var handleFbText = function (senderId, text) {
+  send.sendTextMessage(senderId, 'Your text: ' + text);
 };
 
-var handleFbPostback = function (sender, postback) {
+var handleFbPostback = function (senderId, postback) {
 
 };
 

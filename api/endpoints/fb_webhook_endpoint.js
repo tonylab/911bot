@@ -1,5 +1,5 @@
 var request =  require('request');
-var FbMessage = require('../../modules/fbMessage');
+var FbMessage = require('../../modules/fb_message');
 var settings = require('../../modules/settings')
 
 var challengeToken =  function (req, res) {
@@ -13,11 +13,23 @@ var challengeToken =  function (req, res) {
 
 var handleIncomingMessage =  function (req, res) {
   var messagingEvents = req.body.entry[0].messaging;
+  console.log(JSON.stringify(req.body));
   messagingEvents.forEach(event => {
+    console.log(event);
     var sender = event.sender.id;
     var postback = event.postback;
+
+    /*
+    var attachments = event.message.attachments;
+    if (attachments != undefined && attachments.length > 0) {
+      attachments.forEach(attachment => {
+        console.log(attachment);
+      });
+    }
+    */
+    
     var text = event.message && event.message.text;
-    FbMessage.handleFbMessage(sender, postback, text);
+    FbMessage.receive.handleFbMessage(sender, postback, text);
   });
   res.sendStatus(200);
 };
