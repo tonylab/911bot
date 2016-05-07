@@ -28,7 +28,7 @@ var handleFbText = function (senderId, text) {
 };
 
 var handleFbPostback = function (senderId, postback) {
-
+    var payload = postback && postback.payload;
 };
 
 var handleFbAttachment = function (senderId, attachment) {
