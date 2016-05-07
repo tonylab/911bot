@@ -14,15 +14,13 @@ class CallClient {
     }
 
     makeCall(caseId) {
-        const caseObj = cases[caseId];
-
+        const url = `${this.twilioXmlUrl}?caseId=${caseId}`;
         this.client.makeCall({
             to: this.dispatchCenterPhoneNumber,
             from: this.twilioVerifiedPhoneNumber,
-            url: `${this.twilioXmlUrl}?caseId=${caseId}`
-
+            url: url
         }, function(err, responseData) {
-            console.log(`Call created from ${responseData.from} to ${responseData.to}`);
+            console.log(`Call created from ${responseData.from} to ${responseData.to} with url ${url}`);
         });
     }
 }
