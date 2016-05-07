@@ -1,7 +1,7 @@
 'use strict';
 
 const twilio = require('twilio');
-const cases = require('../cases_global')
+const cases = require('../cases_global');
 
 class CallClient {
     constructor(twilioSid, twilioToken, twilioVerifiedPhoneNumber, twilioXmlUrl, dispatchCenterPhoneNumber) {
@@ -27,4 +27,4 @@ class CallClient {
     }
 }
 
-module.exports = CallClient
+module.exports = CallClient;
