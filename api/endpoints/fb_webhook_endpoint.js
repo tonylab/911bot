@@ -12,6 +12,7 @@ var challengeToken =  function (req, res) {
 
 var handleIncomingMessage =  function (req, res) {
   var messagingEvents = req.body.entry[0].messaging;
+  console.log(req.body);
   messagingEvents.forEach(event => {
     var sender = event.sender.id;
     var postback = event.postback;

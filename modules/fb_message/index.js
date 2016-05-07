@@ -1,4 +1,4 @@
-var receive = require('./recieve.js');
+var receive = require('./receive.js');
 var send = require('./send.js');
 
 module.exports = {
