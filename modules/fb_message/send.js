@@ -4,6 +4,7 @@ var request = require('request'),
   moment = require('moment'),
   settings = require('../settings');
 
+
 var sendTextMessage = function (recipientId, msgTxt) {
   var messageData = {
     text: msgTxt
@@ -12,6 +13,7 @@ var sendTextMessage = function (recipientId, msgTxt) {
   sendMessageRequestToFacebook(recipientId, messageData);
 };
 
+
 var sendBubbles = function (recipientId, bubbles) {
   var messageData = {
     attachment: {
@@ -19,6 +21,21 @@ var sendBubbles = function (recipientId, bubbles) {
       payload: {
         template_type: "generic",
         elements: bubbles
+      }
+    }
+  };
+
+  sendMessageRequestToFacebook(recipientId, messageData);
+};
+
+var sendButtons = function (recipientId, text, buttons) {
+  var messageData = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "button",
+        text,
+        buttons
       }
     }
   };
@@ -52,5 +69,6 @@ var sendMessageRequestToFacebook = function (recipientId, msgData) {
 
 module.exports = {
   sendTextMessage,
-  sendBubbles
+  sendBubbles,
+  sendButtons
 };
