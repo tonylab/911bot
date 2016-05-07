@@ -1,4 +1,5 @@
 var request =  require('request');
+var FbMessage = require('../../modules/fbMessage');
 
 var challengeToken =  function (req, res) {
   console.log('All req query', req.query);
@@ -10,21 +11,19 @@ var challengeToken =  function (req, res) {
 };
 
 var handleIncomingMessage =  function (req, res) {
-  console.log('req.body', req, req.body);
   var messagingEvents = req.body.entry[0].messaging;
   messagingEvents.forEach(event => {
     var sender = event.sender.id;
     var postback = event.postback;
-    console.log(JSON.stringify(event));
-
-    if (event.message && event.message.text) {
-
-    } else if (postback) {
-
-    }
+    var text = event.message && event.message.text;
+    FbMessage.handleFbMessage(sender, postback, text);
   });
   res.sendStatus(200);
 };
+
+
+
+
 
 
 var getProfileInfo = function(userId){
