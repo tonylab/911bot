@@ -1,7 +1,9 @@
 var request = require('request'),
-  moment = require('moment');
+    moment = require('moment'),
+    settings = require('../settings');
 
-const token = process.env.FACEBOOK_PAGE_TOKEN;
+
+const token = settings.FB_PAGE_TOKEN;
 
 var sendTextMessage = function (senderId, msgTxt) {
   var messageData = {
