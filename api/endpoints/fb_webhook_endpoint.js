@@ -17,6 +17,9 @@ var handleIncomingMessage =  function (req, res) {
     console.log(event);
     var sender = event.sender.id;
     var postback = event.postback;
+    var attachment = event.attachment;
+
+    console.log(attachment);
     var text = event.message && event.message.text;
     FbMessage.receive.handleFbMessage(sender, postback, text);
   });
