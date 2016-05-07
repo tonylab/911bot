@@ -6,12 +6,20 @@ var send = require('./send.js');
  * @param postback
  * @param text
  */
-var handleFbMessage = function(sender, postback, text) {
-  console.log('handleFbMessage: ', arguments);
+var handleFbMessageEvent = function(event) {
+  var senderId = event.sender.id;
+  var postback = event.postback;
+  if (event.message) {
+    var text = event.message.text;
+    var attachment = event.message.attachments[0];
+  }
+
   if (text) {
-    handleFbText(sender, text);
+    handleFbText(senderId, text);
   } else if (postback) {
-    handleFbPostback(sender, postback);
+    handleFbPostback(senderId, postback);
+  } else if (attachment) {
+    handleFbAttachment(senderId, postback);
   }
 };
 
@@ -23,6 +31,10 @@ var handleFbPostback = function (senderId, postback) {
 
 };
 
+var handleFbAttachment = function (senderId, attachment) {
+  
+};
+
 module.exports = {
-  handleFbMessage
+  handleFbMessageEvent
 };
