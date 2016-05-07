@@ -1,5 +1,5 @@
 var request =  require('request');
-var FbMessage = require('../../modules/fbMessage');
+var FbMessage = require('../../modules/fb_message');
 
 var challengeToken =  function (req, res) {
   console.log('All req query', req.query);
