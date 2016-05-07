@@ -1,9 +1,10 @@
 var request =  require('request');
 var FbMessage = require('../../modules/fbMessage');
+var settings = require('../../modules/settings')
 
 var challengeToken =  function (req, res) {
   console.log('All req query', req.query);
-  if (req.query['hub.verify_token'] === process.env.FACEBOOK_CHALANGE_RESPONCE) {
+  if (req.query['hub.verify_token'] === settings.FB_CHALLENGE_TOKEN) {
     res.send(req.query['hub.challenge']);
   } else {
     res.send('Error, wrong validation token');

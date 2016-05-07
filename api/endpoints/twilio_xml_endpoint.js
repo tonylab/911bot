@@ -1,5 +1,6 @@
 const xml = require('xml');
 const cases = require('../../modules/cases_global')
+var settings = require('../../modules/settings')
 
 const callStep1 = function (req, res) {
   const caseId = req.query.caseId;
