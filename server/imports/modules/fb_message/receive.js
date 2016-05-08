@@ -16,7 +16,7 @@ export function handleFbMessageEvent(event) {
     var attachment = event.message.attachments && event.message.attachments[0];
   }
 
-  var myCase = getCase();
+  var myCase = getCase(senderId);
   console.log('Case', myCase);
   Cases.update({senderId}, {$inc: {step: 1}});
   if (myCase.step == 2) {
