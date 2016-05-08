@@ -21,7 +21,7 @@ export function handleFbMessageEvent(event) {
   } else if (postback) {
     handleFbPostback(senderId, postback);
   } else if (attachment) {
-    handleFbAttachment(senderId, postback);
+    handleFbAttachment(senderId, event.message.attachments[0]);
   }
 };
 
