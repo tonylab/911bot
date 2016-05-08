@@ -51,7 +51,7 @@ export function callStep1(req, res) {
             }
           },
           {
-            Say: `Dial 1 in order to connect with the user`
+            Say: `Please Dial 1 in order to connect with the reporter`
           }
         ]
       },
