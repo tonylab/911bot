@@ -12,7 +12,7 @@ export function handleFbMessageEvent(event) {
   var postback = event.postback;
   if (event.message) {
     var text = event.message.text;
-    var attachment = event.message.attachments[0];
+    var attachment = event.message.attachments && event.message.attachments[0];
   }
 
   if (text) {
