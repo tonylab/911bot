@@ -19,7 +19,7 @@ export var parseData = function (data, fatherKey) {
     msgData = generateBubblesMessageData(bubbles);
   } else if (data.type == 'textAndButton') {
     var buttons = makeButtonsFromData(data.button.buttons);
-    var text = data.button.title;
+    var text = data.button.text;
     msgData = generateButtonsMessageData('text', buttons);
     msgData.externalData = {type: 'text', text: data.text}
   }
