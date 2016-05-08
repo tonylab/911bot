@@ -1,6 +1,6 @@
 'use strict';
 
-import * as xml from 'xml';
+import xml from 'xml';
 import cases from '../modules/cases_global'
 import settings from '../modules/settings'
 import Call911Client from '../modules/call_client/call_client'
