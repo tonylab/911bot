@@ -18,7 +18,7 @@ export default {
                 type: 'textAndButton',
                 text: 'Check yourself first - If you have been injured in the accident, first check yourself for any injuries. Try to assess how well you can move your limbs, and if you experience symptoms such as dizziness etc. Remember you need to be fit enough to help the others',
                 button :{
-                  text : 'Check yourself first',
+                  text: 'Check yourself first - If you have been injured in the accident, first check yourself for any injuries. Try to assess how well you can move your limbs, and if you experience symptoms such as dizziness etc. Remember you need to be fit enough to help the others',
                   buttons: [
                     {
                       payloadKey: 'TAI1',
@@ -27,7 +27,7 @@ export default {
                         type: 'textAndButton',
                         text: 'Do not move any injured person - Do not move any injured person unless there is a fire or a strong smell of fuel that is caused by a leak. moving him/her in such a situation can cause more harm than good.',
                         button : {
-                          text: 'Do not move any injured person',
+                          text: 'Do not move any injured person - Do not move any injured person unless there is a fire or a strong smell of fuel that is caused by a leak. moving him/her in such a situation can cause more harm than good.',
                           buttons: [
                             {
                               payloadKey: 'TAI2',

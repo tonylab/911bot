@@ -13,7 +13,7 @@ export var parseData = function (data, fatherKey) {
   if (data.type == 'button') {
     var buttons = makeButtonsFromData(data.buttons);
     var text = data.text;
-    msgData = generateButtonsMessageData(text.toUpperCase(), buttons);
+    msgData = generateButtonsMessageData(text, buttons);
   } else if (data.type == 'bubbles') {
     var bubbles = makeBubblesFromData(data.bubbles);
     msgData = generateBubblesMessageData(bubbles);
