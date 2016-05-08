@@ -13,14 +13,14 @@ export var parseData = function (data, fatherKey) {
   if (data.type == 'button') {
     var buttons = makeButtonsFromData(data.buttons);
     var text = data.text;
-    msgData = generateButtonsMessageData(text, buttons);
+    msgData = generateButtonsMessageData(text.toUpperCase(), buttons);
   } else if (data.type == 'bubbles') {
     var bubbles = makeBubblesFromData(data.bubbles);
     msgData = generateBubblesMessageData(bubbles);
   } else if (data.type == 'textAndButton') {
     var buttons = makeButtonsFromData(data.button.buttons);
-    var text = data.button.text;
-    msgData = generateButtonsMessageData('text', buttons);
+    var buttonText = data.button.text;
+    msgData = generateButtonsMessageData(buttonText.toUpperCase(), buttons);
     msgData.externalData = {type: 'text', text: data.text}
   }
   messagesStore[fatherKey] = msgData;
@@ -31,7 +31,7 @@ var makeButtonsFromData = function (dataButtons) {
     // Handle children
     parseData(dataButton.innerStep, dataButton.payloadKey);
     // Return button
-    return new Button("postback", dataButton.title, dataButton.payloadKey);
+    return new Button("postback", dataButton.title.toUpperCase(), dataButton.payloadKey);
   });
 };
 
