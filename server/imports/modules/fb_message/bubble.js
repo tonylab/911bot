@@ -5,10 +5,11 @@ export class Bubble {
       this.title = title;
       this.subtitle = subtitle;
       this.image_url = image;
-      this.buttons = buttons || [];
+      this.buttons = buttons;
     }
 
     addButton(button) {
+      this.buttons = this.buttons || [];
       this.buttons.push(button);
     }
 };
