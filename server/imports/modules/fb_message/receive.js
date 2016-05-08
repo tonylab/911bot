@@ -1,5 +1,6 @@
 import {messagesStore, initialMessageConst} from '../steps/message_store.js';
 import {sendMessageRequestToFacebook} from './send.js';
+import {getCase} from '../../../../lib/collections/cases_collection.js';
 
 /**
  * Handle new incoming message from facebook
@@ -25,7 +26,10 @@ export function handleFbMessageEvent(event) {
 };
 
 var handleFbText = function (senderId, text) {
-  sendMessageRequestToFacebook(senderId, messagesStore[initialMessageConst]);
+  var curCase = getCase(senderId);
+  if (!curCase) {
+    sendMessageRequestToFacebook(senderId, messagesStore[initialMessageConst]);
+  }
 };
 
 var handleFbPostback = function (senderId, postback) {
