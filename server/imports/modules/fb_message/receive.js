@@ -1,6 +1,11 @@
 import {messagesStore, initialMessageConst} from '../steps/message_store.js';
 import {sendMessageRequestToFacebook, sendTextMessage} from './send.js';
-import {getCase, Cases, updateCase} from '../../../../lib/collections/cases_collection.js';
+import {getCase, Cases, updateCase, generateCaseMessage} from '../../../../lib/collections/cases_collection.js';
+import CallClient from '../call_client/call_client'
+import settings from '../settings'
+
+let xmlUrl = `${settings.BASE_URI}/twilio/call/step1`
+var callClient = new CallClient(settings.TWILIO_SID, settings.TWILIO_TOKEN, settings.TWILIO_FROM, xmlUrl, settings.DISPATCH_CENTER_PHONE_NUMBER);
 
 /**
  * Handle new incoming message from facebook
@@ -30,7 +35,7 @@ export function handleFbMessageEvent(event) {
       break;
     case 1:
       if(!postback) {
-        sendWelcomeMessage(senderId)
+        //sendWelcomeMessage(senderId)
       } else {
         handleFbPostback(senderId, postback);
         raiseStep(myCase, senderId);
@@ -52,7 +57,7 @@ export function handleFbMessageEvent(event) {
       if (!location) {
         sendShareLocationMessage(senderId);
       } else {
-        updateCase({_id: myCase._id}, {$set: location});
+        updateCase({_id: myCase._id}, {$set: {location}});
         sendSharePhoneNumber(senderId);
         raiseStep(myCase, senderId);
       }
@@ -60,12 +65,18 @@ export function handleFbMessageEvent(event) {
     case 4:
       // validate phone number
       updateCase({_id: myCase._id}, {$set: {phoneNumber: text}});
+      generateCaseMessage(myCase._id);
+      callClient.makeCall(myCase._id);
       raiseStep(myCase, senderId);
+      sendConnectingYouWith911Message(senderId);
+      handleFbPostback(senderId, {payload: myCase.step2Payload});
       return;
       break;
-    
+    case 5:
+      handleFbPostback(senderId, postback);
+      break;
   }
-  console.log('## DEBUG - after all switch cases:', Cases.findOne({senderId}));
+  console.log('## DEBUG - after all switch cases step=', Cases.findOne(myCase._id).step);
 };
 
 var raiseStep = function (myCase, senderId) {
@@ -96,6 +107,10 @@ var sendShareLocationMessage = function (senderId) {
 
 var sendSharePhoneNumber = function (senderId) {
   sendTextMessage(senderId, 'Please share your phone number so the 911 will call you.');
+};
+
+var sendConnectingYouWith911Message = function (senderId) {
+  sendTextMessage(senderId, `We're now connecting you with 911, an operator will contact you asap.`);
 };
 
 var handleFbAttachment = function (senderId, attachment) {

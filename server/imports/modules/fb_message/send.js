@@ -48,7 +48,6 @@ export function sendMessageRequestToFacebook(recipientId, msgData) {
   };
 
   var url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + settings.FB_PAGE_TOKEN;
-  console.log('post to url', url, 'data', JSON.stringify(msgData));
   var result = HTTP.post(url, {
     headers: {
       "content-type": "application/json"
@@ -56,5 +55,5 @@ export function sendMessageRequestToFacebook(recipientId, msgData) {
     data : requestData
   });
 
-  console.log('Post result', result);
+  // console.log('Post result', result);
 };

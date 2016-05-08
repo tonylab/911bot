@@ -9,7 +9,7 @@ const tokenExpiration = 1440;
 let token = null;
 
 export function locationToAddress(location) {
-    if(!location || !location.lat || !location.lng) {
+    if(!location || !location.lat || !location.long) {
         throw new Meteor.Error('location is missing');
     }
     token = token || getToken()
@@ -21,7 +21,7 @@ export function locationToAddress(location) {
         params: {
             f: 'json',
             token: token,
-            location: `${location.lat},${location.lng}`
+            location: `${location.lat},${location.long}`
         }
     })
     let content = JSON.parse(response.content)
