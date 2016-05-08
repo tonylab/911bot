@@ -4,6 +4,7 @@ export default {
   buttons: [
     {
       title: "Life threatening",
+      payloadKey: '1LifeThreatening',
       innerStep: {
         type: 'bubbles',
         bubbles: [
@@ -38,6 +39,7 @@ export default {
     },
     {
       title: "Not life threatening",
+      payloadKey: '2NotLifeThreatening',
       innerStep: {
         type: 'bubbles',
         bubbles: [
