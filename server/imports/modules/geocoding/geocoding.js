@@ -9,16 +9,19 @@ const tokenExpiration = 1440;
 let token = null;
 
 export function locationToAddress(location) {
+  location = {lat: "40.6802", long: "-74.0143"};
+
   if (!location || !location.lat || !location.long) {
     console.log('no location :(')
     throw new Meteor.Error('location is missing');
   }
 
-  location.lat = location.lat.toString().slice(0, 8);
-  location.long = location.long.toString().slice(0, 8);
-
-  console.log('lat', location.lat, loc.lat, location.lat == loc.lat);
-  console.log('long', location.long, loc.long, location.long == loc.long);
+  location.lat = ""+location.lat.toString();
+  location.long = ""+location.long.toString();
+  location = JSON.stringify(location);
+  console.log('location', location);
+  location = JSON.parse(location);
+  console.log('location', location);
 
   token = token || getToken()
 
@@ -35,6 +38,8 @@ export function locationToAddress(location) {
       location: locationStr
     }
   });
+
+  console.log('location response',response);
   let content = JSON.parse(response.content)
   if (content.error) {
     throw new Meteor.Error('Error finding address');
@@ -42,13 +47,6 @@ export function locationToAddress(location) {
     return content;
   }
 }
-
-
-/** TEST ADDRESS */
-var loc = {long: "-74.01430", lat: "40.68021"};
-//locationToAddress(loc);
-// locationToAddress({long: "-74.0145",lat:"40.68195"})
-/***/
 
 
 function getToken() {
