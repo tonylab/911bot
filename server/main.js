@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import {api} from './imports/api'
-import './imports/modules/steps/generateFlow.js';
+import './imports/modules/steps/generate_flow.js';
 
 Meteor.startup(() => {
   api();

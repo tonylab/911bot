@@ -13,7 +13,7 @@ export class Bubble {
     }
 };
 
-export class BubbleButton {
+export class Button {
   constructor(type, title, payload) {
     this.type = type;
     this.title = title;

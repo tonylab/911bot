@@ -1,4 +1,5 @@
-var send = require('./send.js');
+import {messagesStore, initialMessageConst} from './send.js';
+import {sendMessageRequestToFacebook} from './send.js';
 
 /**
  * Handle new incoming message from facebook
@@ -6,7 +7,7 @@ var send = require('./send.js');
  * @param postback
  * @param text
  */
-export function handleFbMessageEvent (event) {
+export function handleFbMessageEvent(event) {
   var senderId = event.sender.id;
   var postback = event.postback;
   if (event.message) {
@@ -24,11 +25,13 @@ export function handleFbMessageEvent (event) {
 };
 
 var handleFbText = function (senderId, text) {
-  send.sendTextMessage(senderId, 'Your text: ' + text);
+  sendMessageRequestToFacebook(senderId, messagesStore[initialMessageConst]);
 };
 
 var handleFbPostback = function (senderId, postback) {
-    var payload = postback && postback.payload;
+  var payload = postback && postback.payload;
+  console.log('receive payload', payload);
+  sendMessageRequestToFacebook(senderId, messagesStore[payload]);
 };
 
 var handleFbAttachment = function (senderId, attachment) {
@@ -43,7 +46,7 @@ var handleFbAttachment = function (senderId, attachment) {
 
   if (type == 'image') {
     // Handle incoming image
-  } else if  (type == 'video') {
+  } else if (type == 'video') {
     // Handle incoming video
   } else if (type == 'audio') {
     // Handle incoming audio
