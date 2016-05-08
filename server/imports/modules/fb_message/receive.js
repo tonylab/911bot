@@ -20,17 +20,44 @@ export function handleFbMessageEvent(event) {
   }
 
   var myCase = getCase(senderId);
-  console.log('Case', myCase);
-  Cases.update({senderId}, {$inc: {step: 1}});
+  // Ask for location
   if (myCase.step == 2) {
     sendShareLocationMessage(senderId);
+    raiseStep(senderId);
+    // Save payload
+    Cases.update({senderId}, {$set: {payload: postback && postback.payload}});
     return;
   }
-
+  // Ask for phone number
   if (myCase.step == 3) {
-    // Receive location.
-    console.log('receive location', attachment, postback, text);
+    // Check if we haven't received location
+    if (!attachment || attachment.type != 'location') {
+      sendShareLocationMessage(senderId);
+      return;
+    }
+    var location = getCoordinates(attachment);
+    if (location) {
+      // Save location
+      Cases.update({senderId}, {$set: location});
+    }
+    // Ask for phone number
+    sendSharePhoneNumber(senderId);
+    raiseStep(senderId);
+    return;
   }
+  // Receive phone number
+  if (myCase.step == 4) {
+    // validate phone number
+    Cases.update({senderId}, {$set: {phoneNumber: text}});
+    raiseStep(senderId);
+
+    // Debug
+    console.log('DEBUG - case', Cases.findOne({senderId}));
+    return;
+  }
+  // raise step
+  raiseStep(senderId);
+
   if (text) {
     handleFbText(senderId, text);
   } else if (postback) {
@@ -38,6 +65,10 @@ export function handleFbMessageEvent(event) {
   } else if (attachment) {
     handleFbAttachment(senderId, attachment);
   }
+};
+
+var raiseStep = function (senderId) {
+  Cases.update({senderId}, {$inc: {step: 1}});
 };
 
 var handleFbText = function (senderId, text) {
@@ -52,6 +83,10 @@ var handleFbPostback = function (senderId, postback) {
 
 var sendShareLocationMessage = function (senderId) {
   sendTextMessage(senderId, 'Please share with us your collection');
+};
+
+var sendSharePhoneNumber = function (senderId) {
+  sendTextMessage(senderId, 'Please share your phone number so the 911 will call you.');
 };
 
 var handleFbAttachment = function (senderId, attachment) {
@@ -72,9 +107,9 @@ var handleFbAttachment = function (senderId, attachment) {
     // Handle incoming audio
   } else if (type == 'location') {
     // Handle incoming location
-    var coordinates = attachment.payload && attachment.payload.coordinates;
-    var locationName = title;
-
-    console.log('Got location : ' + locationName + ' with coordinates : ' + JSON.stringify(coordinates));
   }
+};
+
+var getCoordinates = function (attachment) {
+  return attachment.payload && attachment.payload.coordinates;
 };
