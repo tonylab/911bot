@@ -17,15 +17,21 @@ export function locationToAddress(location) {
         throw new Meteor.Error('cannot generate token');
     }
 
+    const locationStr = `${location.lat}, ${location.long}`
+    console.log('##token', token,'locationStr',locationStr);
     let response = HTTP.get(API_URLS.reverseGeoCoding, {
         params: {
             f: 'json',
             token: token,
-            location: `${location.lat},${location.long}`
+            location: locationStr
         }
-    })
+    });
     let content = JSON.parse(response.content)
-    return content;
+    if(content.error) {
+        throw new Meteor.Error('Error finding address');
+    } else {
+        return content;
+    }
 }
 
 
