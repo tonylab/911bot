@@ -60,7 +60,13 @@ export function sendMessageRequestToFacebook(recipientId, msgData) {
     if (externalType == 'text') {
       sendTextMessage(recipientId, msgData.externalData.text);
     } else if (externalType == 'image') {
-      sendImageMessage(recipientId, msgData.externalData.image);
+      if (msgData.externalData.timeout) {
+        Meteor.setTimeout(() => {
+          sendImageMessage(recipientId, msgData.externalData.image);
+        }, msgData.externalData.timeout);
+      } else {
+        sendImageMessage(recipientId, msgData.externalData.image);
+      }
     }
     newMsgData = Object.assign({}, msgData);
     delete newMsgData.externalData;
