@@ -41,7 +41,7 @@ export function callStep1(req, res) {
                           method: `POST`,
                           timeout: 10,
                           numDigits : 1,
-                          finishOnKey: 'any digit'
+                          finishOnKey: ''
                       }
                   },
                   {
