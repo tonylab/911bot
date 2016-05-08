@@ -100,7 +100,7 @@ export function callStep2(req, res) {
           {
             _attr: {timeout: 20, record: true}
           },
-          caseObj.phoneNumber
+          foundCase.phoneNumber
         ]
       }
     ]
