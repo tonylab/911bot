@@ -21,7 +21,7 @@ export function locationToAddress(location) {
     console.log('##token', token,'locationStr',locationStr);
     let response = HTTP.get(API_URLS.reverseGeoCoding, {
         params: {
-            f: 'json',
+            f: 'pjson',
             token: token,
             location: locationStr
         }
@@ -36,6 +36,7 @@ export function locationToAddress(location) {
 }
 
 
+locationToAddress({long: "-74.014305633817585",lat:"40.680211126918707"})
 function getToken() {
     let tokenResponse = HTTP.post(API_URLS.token, {
         params: {

@@ -127,6 +127,6 @@ function getCaseById(caseId) {
   }
 }
 
-function convertToPronouncableNumber(number) {
+export function convertToPronouncableNumber(number) {
   return number.split('').join(' ');
 }
