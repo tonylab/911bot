@@ -53,5 +53,8 @@ var handleFbAttachment = function (senderId, attachment) {
   } else if (type == 'location') {
     // Handle incoming location
     var coordinates = attachment.payload && attachment.payload.coordinates;
+    var locationName = title;
+
+    console.log('Got location : ' + locationName + ' with coordinates : ' + JSON.stringify(coordinates));
   }
 };
