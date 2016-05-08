@@ -50,6 +50,7 @@ export default {
                                             payloadKey: 'TAI5',
                                             title: 'OK',
                                             innerStep: {
+                                              type: 'bubbles',
                                               bubbles: [
                                                 {
                                                   title: 'Check the other person(s) for injuries',

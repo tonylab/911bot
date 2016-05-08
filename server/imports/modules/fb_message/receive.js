@@ -135,7 +135,7 @@ var handleFbAttachment = function (myCase, senderId, attachment) {
     // Handle incoming image
   } else if (type == 'video') {
     // Send text message
-    sendTextMessage(senderId, 'Great !');
+    sendTextMessage(senderId, 'We got your video');
     // Save video url
     updateCase({_id: myCase._id}, {$set: {video_url: url}});
     // Handle incoming video as last incoming video message click
