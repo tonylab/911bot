@@ -1,9 +1,9 @@
 'use strict';
 
-const twilio = require('twilio');
-const cases = require('../cases_global');
+import twilio from 'twilio';
+import cases from '../cases_global';
 
-class CallClient {
+export default class CallClient {
     constructor(twilioSid, twilioToken, twilioVerifiedPhoneNumber, twilioXmlUrl, dispatchCenterPhoneNumber) {
         this.client = twilio(twilioSid, twilioToken);
         this.twilioVerifiedPhoneNumber = twilioVerifiedPhoneNumber;
@@ -20,9 +20,11 @@ class CallClient {
             from: this.twilioVerifiedPhoneNumber,
             url: url
         }, function(err, responseData) {
-            console.log(`Call created from ${responseData.from} to ${responseData.to} with url ${url}`);
+            if(err) {
+                console.error('Error making call',err);
+            } else {
+                console.log(`Call created from ${responseData.from} to ${responseData.to} with url ${url}`);
+            }
         });
     }
 }
-
-module.exports = CallClient;

@@ -1,6 +1,6 @@
 "use strict";
 
-class Bubble {
+export class Bubble {
     constructor(title, subtitle, image, buttons) {
       this.title = title;
       this.subtitle = subtitle;
@@ -13,15 +13,10 @@ class Bubble {
     }
 };
 
-class BubbleButton {
+export class BubbleButton {
   constructor(type, title, payload) {
     this.type = type;
     this.title = title;
     this.payload = payload;
   }
-};
-
-module.exports = {
-  Bubble,
-  BubbleButton
 };

@@ -1,11 +1,8 @@
 'use strict';
 
-var request = require('request'),
-  moment = require('moment'),
-  settings = require('../settings');
+import settings from '../settings'
 
-
-var sendTextMessage = function (recipientId, msgTxt) {
+export function sendTextMessage (recipientId, msgTxt) {
   var messageData = {
     text: msgTxt
   };
@@ -14,7 +11,7 @@ var sendTextMessage = function (recipientId, msgTxt) {
 };
 
 
-var sendBubbles = function (recipientId, bubbles) {
+export function sendBubbles (recipientId, bubbles) {
   var messageData = {
     attachment: {
       type: "template",
@@ -28,7 +25,7 @@ var sendBubbles = function (recipientId, bubbles) {
   sendMessageRequestToFacebook(recipientId, messageData);
 };
 
-var sendButtons = function (recipientId, text, buttons) {
+export function sendButtons (recipientId, text, buttons) {
   var messageData = {
     attachment: {
       type: "template",
@@ -43,7 +40,7 @@ var sendButtons = function (recipientId, text, buttons) {
   sendMessageRequestToFacebook(recipientId, messageData);
 };
 
-var sendMessageRequestToFacebook = function (recipientId, msgData) {
+export function sendMessageRequestToFacebook (recipientId, msgData) {
   var requestData = {
     recipient: {id: recipientId},
     message: msgData
@@ -65,10 +62,4 @@ var sendMessageRequestToFacebook = function (recipientId, msgData) {
       console.log(body);
     }
   });
-};
-
-module.exports = {
-  sendTextMessage,
-  sendBubbles,
-  sendButtons
 };
