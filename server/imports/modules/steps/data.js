@@ -15,7 +15,13 @@ export default {
               payloadKey: 'A Traffic Accident',
               title: 'Report',
               innerStep: {
-                type: 'bubbles',
+                type: 'TextAndButton',
+                text: 'Check yourself first - If you have been injured in the accident, first check yourself for any injuries. Try to assess how well you can move your limbs, and if you experience symptoms such as dizziness etc. Remember you need to be fit enough to help the others',
+                button :{
+                  payloadKey: 'TAI1',
+                  title: 'I am ok',
+                }
+                /*
                 bubbles:[
                   {
                     title: 'Check yourself first',
@@ -86,6 +92,7 @@ export default {
                     }]
                   }
                 ]
+                */
               }
             }]
           },
