@@ -28,6 +28,11 @@ export function handleFbMessageEvent(event) {
     caseId = myCase._id;
   // Ask for location
   console.log('## myCase step =' + myCase.step);
+  // Reset status every call for help
+  if (text && text.toLowerCase().indexOf('help') == 0) {
+    updateCase({_id: myCase._id}, {$set: {step: 0}});
+    sendWelcomeMessage(senderId);
+  }
 
   switch (myCase.step) {
     case 0:
