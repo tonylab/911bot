@@ -11,13 +11,13 @@ export default {
           {
             title: 'Traffic Accident',
             payloadKey: '11TrafficAccident',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMV1lYaFByMmdVRFU',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1461712951/Premier_League_2013-14_slider_gnxdpg.png',
             buttons: null
           },
           {
             title: 'Violence',
             payloadKey: '12Violence',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMSDM1ZVNCWTJhdHc',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1461712951/Premier_League_2013-14_slider_gnxdpg.png',
             buttons: null
           },
           {
