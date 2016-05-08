@@ -20,7 +20,7 @@ export var parseData = function (data, fatherKey) {
   } else if (data.type == 'textAndButton') {
     var buttons = makeButtonsFromData(data.button.buttons);
     var buttonText = data.button.text;
-    msgData = generateButtonsMessageData(buttonText.toUpperCase(), buttons);
+    msgData = generateButtonsMessageData(buttonText, buttons);
     msgData.externalData = {type: 'text', text: data.text}
   }
   messagesStore[fatherKey] = msgData;
