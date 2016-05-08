@@ -23,7 +23,7 @@ export function callStep1(req, res) {
 
   const actionUrl = `${settings.BASE_URI}/twilio/call/step2?caseId=${caseId}`
   const formattedPhoneNumber = convertToPronouncableNumber(foundCase.phoneNumber);
-  const name = (foundCase.profile.firstName || " ") + foundCase.profile.lastName || "";
+  const name = (foundCase.profile.first_name || "") + (foundCase.profile.last_name || "");
   const nameFromStr = ` from ${name}`
   const xmlResponse = {
     Response: [
@@ -89,7 +89,7 @@ export function callStep2(req, res) {
   }
 
   const formattedPhoneNumber = convertToPronouncableNumber(foundCase.phoneNumber);
-  const name = (foundCase.profile.firstName || " ") + foundCase.profile.lastName || "";
+  const name = (foundCase.profile.first_name || "") + (foundCase.profile.last_name || "");
   const xmlResponse = {
     Response: [
       {
