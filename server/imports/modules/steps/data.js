@@ -59,7 +59,15 @@ export default {
                   },
                   {
                     title: '5.Deal with open wounds',
-                    subtitle: 'If there are extensive wounds, control the bleeding using pressure to the area using a cloth.'
+                    subtitle: 'If there are extensive wounds, control the bleeding using pressure to the area using a cloth.',
+                    buttons:[{
+                      payloadKey: 'pressureImg',
+                      title: 'Apply pressure',
+                      innerStep : {
+                        type: 'image',
+                        image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462702006/pressure_v38ahv.jpg'
+                      }
+                    }]
                   }
                   ,
                   {
