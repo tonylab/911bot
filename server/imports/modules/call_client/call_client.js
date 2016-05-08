@@ -1,7 +1,6 @@
 'use strict';
 
 import twilio from 'twilio';
-import cases from '../cases_global';
 
 export default class CallClient {
     constructor(twilioSid, twilioToken, twilioVerifiedPhoneNumber, twilioXmlUrl, dispatchCenterPhoneNumber) {
