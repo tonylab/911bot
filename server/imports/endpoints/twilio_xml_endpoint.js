@@ -1,7 +1,7 @@
 'use strict';
 
 import xml from 'xml';
-import cases from '../modules/cases_global'
+import casesStubs from '../modules/cases_stub'
 import settings from '../modules/settings'
 import Call911Client from '../modules/call_client/call_client'
 import {Cases} from '../../../lib/collections/cases_collection'
@@ -23,10 +23,12 @@ export function callStep1(req, res) {
 
   const actionUrl = `${settings.BASE_URI}/twilio/call/step2?caseId=${caseId}`
   const formattedPhoneNumber = convertToPronouncableNumber(foundCase.phoneNumber);
+  const name = (foundCase.profile.firstName || " ") + foundCase.profile.lastName || "";
+  const nameFromStr = ` from ${name}`
   const xmlResponse = {
     Response: [
       {
-        Say: `This is an emergency call from ${foundCase.name}`
+        Say: `This is an emergency call ${nameFromStr}`
       },
       {
         Pause: {_attr: {length: 1}}
@@ -87,10 +89,11 @@ export function callStep2(req, res) {
   }
 
   const formattedPhoneNumber = convertToPronouncableNumber(foundCase.phoneNumber);
+  const name = (foundCase.profile.firstName || " ") + foundCase.profile.lastName || "";
   const xmlResponse = {
     Response: [
       {
-        Say: `Connecting you with ${foundCase.name}, phone number is ${formattedPhoneNumber}`
+        Say: `Connecting you with ${name}, phone number is ${formattedPhoneNumber}`
       },
       {
         Dial: [
@@ -118,7 +121,7 @@ export function testEndpoint(req, res) {
 
 function getCaseById(caseId) {
   if (caseId == "test") {
-    return cases[caseId];
+    return casesStubs[caseId];
   } else {
     return Cases.findOne(caseId);
   }
