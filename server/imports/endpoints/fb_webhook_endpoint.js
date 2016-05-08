@@ -6,7 +6,7 @@ var settings = require('.././settings')
 export function challengeToken (req, res) {
   console.log('All req query', req.query);
   if (req.query['hub.verify_token'] === settings.FB_CHALLENGE_TOKEN) {
-    JsonRoutes.sendResult(res, req.query['hub.challenge']);
+    res.send(req.query['hub.challenge']);
   } else {
     let error = new Meteor.Error('Error, wrong validation token');
     error.statusCode = 500;
