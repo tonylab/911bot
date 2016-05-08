@@ -99,7 +99,7 @@ export default {
               },
               {
                 payloadKey: 'A Health Emergency',
-                title: 'Other Health Emergencies'
+                title: 'Others'
               }
             ]
           },
