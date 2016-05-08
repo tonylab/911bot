@@ -1,9 +1,9 @@
 'use strict';
 
-const xml = require('xml');
-const cases = require('.././cases_global')
-const settings = require('.././settings')
-const Call911Client = require('.././call_client/call_client')
+import * as xml from 'xml';
+import cases from '../modules/cases_global'
+import settings from '../modules/settings'
+import Call911Client from '../modules/call_client/call_client'
 
 export function callStep1(req, res) {
   const caseId = req.query.caseId;

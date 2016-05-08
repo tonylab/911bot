@@ -1,7 +1,7 @@
 'use strict';
 
-var FbMessage = require('.././fb_message');
-var settings = require('.././settings')
+import FbMessage from '../modules/fb_message'
+import settings from '../modules/settings'
 
 export function challengeToken (req, res) {
   console.log('All req query', req.query);
