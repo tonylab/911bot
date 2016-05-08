@@ -81,6 +81,10 @@ var handleFbText = function (senderId, text) {
 var handleFbPostback = function (senderId, postback) {
   var payload = postback && postback.payload;
   console.log('receive payload', payload);
+  if (!messagesStore[payload]) {
+    console.log('No message');
+    return;
+  }
   sendMessageRequestToFacebook(senderId, messagesStore[payload]);
 };
 

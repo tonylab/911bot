@@ -12,4 +12,8 @@ export function api() {
     JsonRoutes.add("post", "/twilio/call/step2", twilioXmlEndpoint.callStep2);
 
     JsonRoutes.add("get", "/twilio/test", twilioXmlEndpoint.testEndpoint);
+    JsonRoutes.add("get", "/db/delete", function(req, res) {
+        Cases.remove({});
+        res.send(200);
+    });
 }
