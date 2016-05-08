@@ -23,14 +23,14 @@ export default {
                     title: 'I AM OK',
                     innerStep:{
                       type: 'button',
-                      text: 'Do not move any injured person - Do not move any injured person unless there is a fire or a strong smell of fuel that is caused by a leak. moving him/her in such a situation can cause more harm than good.',
+                      text: 'Do not move any injured person - unless there is a fire or a strong smell of fuel that is caused by a leak. moving him/her in such a situation can cause more harm than good.',
                       buttons: [
                         {
                           payloadKey: 'TAI2',
                           title: 'GOT IT',
                           innerStep: {
                             type: 'button',
-                            text: 'Secure the Accident Scene - Park your car with hazard lights and/or headlights on ideally facing approaching traffic. Place a warning triangle in the road.If there are other people who can help send them back along the road to wave traffic in order to slow it down. Take care on fast moving roads. Other drivers might not understand what you are trying to do.',
+                            text: 'Secure the Accident Scene - Park your car with hazard lights and/or headlights on ideally facing approaching traffic. Place a warning triangle in the road.If there are other people who can help send them back along the road to wave traffic in order to slow it down.',
                             buttons: [
                               {
                                 payloadKey: 'TAI3',
@@ -43,7 +43,17 @@ export default {
                                       payloadKey: 'TAI4',
                                       title: 'DONE',
                                       innerStep: {
+                                        type: 'button',
+                                        text: 'Send video - Sending us a short video will help us asses the damage and send the most accurate help.',
+                                        buttons: [
+                                          {
+                                            payloadKey: 'TAI5',
+                                            title: 'OK',
+                                            innerStep: {
 
+                                            }
+                                          }
+                                        ]
                                       }
                                     }
                                   ]
