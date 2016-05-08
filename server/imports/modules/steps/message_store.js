@@ -5,7 +5,7 @@ export const initialMessageConst = 'INITIAL';
 
 export var messagesStore = {};
 
-export var parseData = function(data, fatherKey) {
+export var parseData = function (data, fatherKey) {
   if (!data || !fatherKey) {
     return;
   }
@@ -17,6 +17,11 @@ export var parseData = function(data, fatherKey) {
   } else if (data.type == 'bubbles') {
     var bubbles = makeBubblesFromData(data.bubbles);
     msgData = generateBubblesMessageData(bubbles);
+  } else if (data.type == 'textAndButton') {
+    var buttons = makeButtonsFromData(data.button.buttons);
+    var text = data.button.title;
+    msgData = generateButtonsMessageData('text', buttons);
+    msgData.externalData = {type: 'text', text: data.text}
   }
   messagesStore[fatherKey] = msgData;
 };
@@ -40,11 +45,11 @@ var makeBubblesFromData = function (dataBubbles) {
     if (dataBubble.buttons) {
       buttons = makeButtonsFromData(dataBubble.buttons);
     }
-    return new Bubble(dataBubble.title ,dataBubble.subtitle, dataBubble.image, buttons);
+    return new Bubble(dataBubble.title, dataBubble.subtitle, dataBubble.image, buttons);
   });
 };
 
-var generateButtonsMessageData = function(text, buttons) {
+var generateButtonsMessageData = function (text, buttons) {
   return {
     attachment: {
       type: "template",
@@ -57,7 +62,7 @@ var generateButtonsMessageData = function(text, buttons) {
   };
 };
 
-var generateBubblesMessageData = function(bubbles) {
+var generateBubblesMessageData = function (bubbles) {
   return {
     attachment: {
       type: "template",
