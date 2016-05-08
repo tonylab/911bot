@@ -1,7 +1,7 @@
-var baseSteps = {
+export default {
   type: 'button',
   text: 'Please choose:',
-  options: [
+  buttons: [
     {
       "text": "Life threatening",
       innerStep: {
