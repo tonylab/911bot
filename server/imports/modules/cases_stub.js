@@ -1,7 +1,9 @@
 export default {
     test: {
         _id: "test",
-        name: "Tomer",
+        profile: {
+            firstName: "Tomer",
+        },
         phoneNumber: "+972545800086",
         message: "I was kidnapped. help me. help!!",
         location: {
