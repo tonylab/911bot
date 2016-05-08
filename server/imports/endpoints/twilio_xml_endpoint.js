@@ -18,7 +18,7 @@ export function callStep1(req, res) {
   }
 
   const caseObj = cases[caseId];
-  const actionUrl = `twilio/call/step2`
+  const actionUrl = `${settings.BASE_URI}/twilio/call/step2?caseId=${caseId}`
   const formattedPhoneNumber = convertToPronouncableNumber(caseObj.phoneNumber);
   const xmlResponse = {
       Response : [
@@ -26,13 +26,13 @@ export function callStep1(req, res) {
               Say: `This is an emergency call from ${caseObj.name}`
           },
           {
-              Pause: {_attr: {length: 2}}
+              Pause: {_attr: {length: 1}}
           },
           {
               Say: caseObj.message
           },
           {
-              Pause: {_attr: {length: 2}}
+              Pause: {_attr: {length: 1}}
           },
           {
               Gather: [
@@ -69,7 +69,36 @@ export function callStep1(req, res) {
 }
 
 export function callStep2 () {
+    const caseId = req.query.caseId;
+    if (!caseId) {
+        var error = new Meteor.Error('Case id is missing');
+        error.statusCode = 400;
+        throw  error;
+    } else if (!cases[caseId]) {
+        var error = new Meteor.Error('Case not found');
+        error.statusCode = 400;
+        throw  error;
+    }
 
+    const caseObj = cases[caseId];
+    const formattedPhoneNumber = convertToPronouncableNumber(caseObj.phoneNumber);
+    const xmlResponse = {
+        Response : [
+            {
+                Say: `Connecting you with ${caseObj.name}, phone number is ${formattedPhoneNumber}`
+            },
+            {
+                Dial: [
+                    {
+                        _attr: {timeout: 20, record: true}
+                    },
+                    caseObj.phoneNumber
+                ]
+            }
+        ]
+    };
+
+    JsonRoutes.sendPlainResult(res, {headers: {'Content-Type': 'text/xml'}, data: xml(xmlResponse)});
 }
 
 export function testEndpoint (req, res) {
