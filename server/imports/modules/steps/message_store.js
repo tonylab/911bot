@@ -21,9 +21,13 @@ export var parseData = function (data, fatherKey) {
     var buttons = makeButtonsFromData(data.button.buttons);
     var buttonText = data.button.text;
     msgData = generateButtonsMessageData(buttonText, buttons);
-    msgData.externalData = {type: 'text', text: data.text}
+    msgData.externalData = {type: 'text', text: data.text};
   } else if (data.type == 'image') {
     msgData = generateImageMessageData(data.image);
+  } else if (data.type == 'imageAndBubble') {
+    var bubbles = makeBubblesFromData(data.bubbles);
+    msgData = generateBubblesMessageData(bubbles);
+    msgData.externalData = {type: 'image', text: data.image};
   }
   messagesStore[fatherKey] = msgData;
 };

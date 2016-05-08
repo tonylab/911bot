@@ -11,6 +11,18 @@ export function sendTextMessage(recipientId, msgTxt) {
   sendMessageRequestToFacebook(recipientId, messageData);
 };
 
+export function sendImageMessage(recipientId, imageUrl) {
+  var messageData = {
+    "attachment": {
+      "type": "image",
+      "payload": {
+        "url": imageUrl
+      }
+    }
+  };
+
+  sendMessageRequestToFacebook(recipientId, messageData);
+};
 
 export function sendBubbles(recipientId, bubbles) {
   var messageData = {
@@ -44,7 +56,12 @@ export function sendButtons(recipientId, text, buttons) {
 export function sendMessageRequestToFacebook(recipientId, msgData) {
   var newMsgData = msgData;
   if (msgData && msgData.externalData) {
-    sendTextMessage(recipientId, msgData.externalData.text);
+    var externalType = msgData.externalData.type;
+    if (externalType == 'text') {
+      sendTextMessage(recipientId, msgData.externalData.text);
+    } else if (externalType == 'image') {
+      sendImageMessage(recipientId, msgData.externalData.image);
+    }
     newMsgData = Object.assign({}, msgData);
     delete newMsgData.externalData;
   }
@@ -59,7 +76,7 @@ export function sendMessageRequestToFacebook(recipientId, msgData) {
     headers: {
       "content-type": "application/json"
     },
-    data : requestData
+    data: requestData
   });
 
   // console.log('Post result', result);
