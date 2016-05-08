@@ -20,11 +20,10 @@ export function handleFbMessageEvent(event) {
   }
 
   var myCase = getCase(senderId);
-  console.log('myCase', myCase);
+
   // Ask for location
   if (myCase.step == 2) {
     sendShareLocationMessage(senderId);
-    console.log('raiseStep -- in 2 ', myCase.step);
     raiseStep(senderId);
     // Save payload
     Cases.update({senderId}, {$set: {payload: postback && postback.payload}});
@@ -44,8 +43,6 @@ export function handleFbMessageEvent(event) {
     }
     // Ask for phone number
     sendSharePhoneNumber(senderId);
-    console.log('raiseStep -- in 3 ', myCase.step);
-
     raiseStep(senderId);
     return;
   }
@@ -53,19 +50,11 @@ export function handleFbMessageEvent(event) {
   if (myCase.step == 4) {
     // validate phone number
     Cases.update({senderId}, {$set: {phoneNumber: text}});
-    console.log('raiseStep -- in 4 ', myCase.step);
-
     raiseStep(senderId);
-
-    // Debug
-    console.log('DEBUG - case', Cases.findOne({senderId}));
     return;
   }
   // raise step
-  console.log('raiseStep -- outside', myCase.step);
-
   raiseStep(senderId);
-  console.log('DEBUG - case after', Cases.findOne({senderId}));
 
 
   if (text) {
@@ -87,16 +76,14 @@ var handleFbText = function (senderId, text) {
 
 var handleFbPostback = function (senderId, postback) {
   var payload = postback && postback.payload;
-  console.log('receive payload', payload);
   if (!messagesStore[payload]) {
-    console.log('No message');
     return;
   }
   sendMessageRequestToFacebook(senderId, messagesStore[payload]);
 };
 
 var sendShareLocationMessage = function (senderId) {
-  sendTextMessage(senderId, 'Please share with us your collection');
+  sendTextMessage(senderId, 'Please share with us your location.');
 };
 
 var sendSharePhoneNumber = function (senderId) {
