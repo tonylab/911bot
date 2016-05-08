@@ -68,7 +68,7 @@ export function callStep1(req, res) {
   JsonRoutes.sendPlainResult(res, {headers: {'Content-Type': 'text/xml'}, data: xml(xmlResponse)});
 }
 
-export function callStep2 () {
+export function callStep2 (req, res) {
     const caseId = req.query.caseId;
     if (!caseId) {
         var error = new Meteor.Error('Case id is missing');
