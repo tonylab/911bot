@@ -1,9 +1,9 @@
 'use strict';
 
-const twilio = require('twilio');
-const cases = require('../cases_global');
+import * as twilio from 'twilio';
+import cases from '../cases_global';
 
-class CallClient {
+export default class CallClient {
     constructor(twilioSid, twilioToken, twilioVerifiedPhoneNumber, twilioXmlUrl, dispatchCenterPhoneNumber) {
         this.client = twilio(twilioSid, twilioToken);
         this.twilioVerifiedPhoneNumber = twilioVerifiedPhoneNumber;
@@ -24,5 +24,3 @@ class CallClient {
         });
     }
 }
-
-module.exports = CallClient;

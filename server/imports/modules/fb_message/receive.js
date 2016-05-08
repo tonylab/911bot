@@ -6,7 +6,7 @@ var send = require('./send.js');
  * @param postback
  * @param text
  */
-var handleFbMessageEvent = function(event) {
+export function handleFbMessageEvent (event) {
   var senderId = event.sender.id;
   var postback = event.postback;
   if (event.message) {
@@ -51,8 +51,4 @@ var handleFbAttachment = function (senderId, attachment) {
     // Handle incoming location
     var coordinates = attachment.payload && attachment.payload.coordinates;
   }
-};
-
-module.exports = {
-  handleFbMessageEvent
 };
