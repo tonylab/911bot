@@ -35,7 +35,7 @@ export function handleFbMessageEvent(event) {
       raiseStep(myCase, senderId);
       break;
     case 1:
-      if(!postback) {
+      if (!postback) {
         //sendWelcomeMessage(senderId)
       } else {
         handleFbPostback(caseId, senderId, postback);
@@ -43,7 +43,7 @@ export function handleFbMessageEvent(event) {
       }
       break;
     case 2:
-      if(!postback) {
+      if (!postback) {
         // IGNORE FOR NOW
       } else {
         sendShareLocationMessage(senderId);
@@ -74,14 +74,18 @@ export function handleFbMessageEvent(event) {
       return;
       break;
     case 5:
-      handleFbPostback(caseId, senderId, postback);
+      if (postback) {
+        handleFbPostback(caseId, senderId, postback);
+      } else if (attachment) {
+        handleFbAttachment(myCase, senderId, attachment);
+      }
       break;
   }
   console.log('## DEBUG - after all switch cases step=', Cases.findOne(myCase._id).step);
 };
 
 var raiseStep = function (myCase, senderId) {
-  console.log ("## raiseStep of case id = " + myCase._id);
+  console.log("## raiseStep of case id = " + myCase._id);
   updateCase({_id: myCase._id}, {$inc: {step: 1}});
 };
 
@@ -117,7 +121,7 @@ var sendConnectingYouWith911Message = function (senderId) {
   sendTextMessage(senderId, `We're now connecting you with 911, an operator will contact you asap.`);
 };
 
-var handleFbAttachment = function (senderId, attachment) {
+var handleFbAttachment = function (myCase, senderId, attachment) {
   if (!attachment) {
     console.error('handleFbAttachment must get attachment');
     return;
@@ -130,7 +134,14 @@ var handleFbAttachment = function (senderId, attachment) {
   if (type == 'image') {
     // Handle incoming image
   } else if (type == 'video') {
-    // Handle incoming video
+    // Send text message
+    sendTextMessage(senderId, 'Great !');
+    // Save video url
+    updateCase({_id: myCase._id}, {$set: {video_url: url}});
+    // Handle incoming video as last incoming video message click
+    if (myCase.lastPayload == 'TAI4') {
+      handleFbPostback(myCase._id, senderId, {payload: 'TAI5'});
+    }
   } else if (type == 'audio') {
     // Handle incoming audio
   } else if (type == 'location') {
