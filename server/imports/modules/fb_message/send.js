@@ -56,5 +56,5 @@ export function sendMessageRequestToFacebook(recipientId, msgData) {
     data : requestData
   });
 
-  console.log('Post result', result);
+  console.log('Post result', result, 'sentData', requestData);
 };
