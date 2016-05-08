@@ -19,6 +19,7 @@ export function callStep1(req, res) {
 
   const caseObj = cases[caseId];
   const actionUrl = `twilio/call/step2`
+  const formattedPhoneNumber = convertToPronouncableNumber(caseObj.phoneNumber);
   const xmlResponse = {
       Response : [
           {
@@ -45,18 +46,18 @@ export function callStep1(req, res) {
                       }
                   },
                   {
-                      say: `Dial 1 in order to connect with the user`
+                      Say: `Dial 1 in order to connect with the user`
                   }
               ]
           },
           {
-              Say: `Please call ${caseObj.phoneNumber}`
+              Say: [
+                  {_attr: {loop: 2}},
+                  `Please call ${formattedPhoneNumber}`
+              ]
           },
           {
               Pause: {_attr: {length: 5}}
-          },
-          {
-              Say: `Please call ${caseObj.phoneNumber}`
           },
           {
               Say: `Thank you and goodbye!`
@@ -76,4 +77,8 @@ export function testEndpoint (req, res) {
     var client = new Call911Client('ACfb01ca8a5e0434e4e2bc38e9cd035b42', 'fb5566a6caae9ef9f4b75d1ef6cf5999', '+13342460557', xmlUrl, '+972525444544');
     client.makeCall('test');
     JsonRoutes.sendPlainResult(res, {headers: {'Content-Type': 'text'}, data: `Made call to case id: test with xml url = ${xmlUrl}`});
+}
+
+function convertToPronouncableNumber(number) {
+    return number.split('').join(' ');
 }
