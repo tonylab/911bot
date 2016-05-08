@@ -9,27 +9,27 @@ export default {
         bubbles: [
           {
             text: 'Traffic Accident',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMV1lYaFByMmdVRFU',
             button: ''
           },
           {
             text: 'Violence',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMSDM1ZVNCWTJhdHc',
             button: ''
           },
           {
             text: 'Health Emergency',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMZzlvbFVRZC1ubDA',
             button: ''
           },
           {
             text: 'Fire',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMQ2U5MzVIVzVqbTQ',
             button: ''
           },
           {
             text: 'Other',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMLUU4U196OWNCb2c',
             button: ''
           }
         ]
@@ -42,37 +42,32 @@ export default {
         bubbles: [
           {
             text: 'Traffic reporting',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMMURWcDJ3dzRmb2s',
             button: ''
           },
           {
             text: 'Disturbances',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMcEV2MFMtcmZEOUU',
             button: ''
           },
           {
             text: 'Alarms',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMVG82Z2JSbEl4TDg',
             button: ''
           },
           {
             text: 'Welfare checks',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMZEtOV2Jlejhzdkk',
             button: ''
           },
           {
             text: 'Civil problems',
-            image: '',
-            button: ''
-          },
-          {
-            text: 'Health issues',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMNUNCX01BenF3NVU',
             button: ''
           },
           {
             text: 'Other',
-            image: '',
+            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMLUU4U196OWNCb2c',
             button: ''
           }
         ]

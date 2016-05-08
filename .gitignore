@@ -1,1 +1,10 @@
 node_modules/
+.idea/911Bot.iml
+.idea/encodings.xml
+.idea/jsLibraryMappings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/watcherTasks.xml
+.idea/libraries/meteor_packages_auto_import_browser.xml
+.idea/libraries/meteor_packages_auto_import_npm.xml
