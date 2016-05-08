@@ -1,8 +1,9 @@
 'use strict';
 
 import settings from '../settings'
+import {HTTP} from 'meteor/http';
 
-export function sendTextMessage (recipientId, msgTxt) {
+export function sendTextMessage(recipientId, msgTxt) {
   var messageData = {
     text: msgTxt
   };
@@ -11,7 +12,7 @@ export function sendTextMessage (recipientId, msgTxt) {
 };
 
 
-export function sendBubbles (recipientId, bubbles) {
+export function sendBubbles(recipientId, bubbles) {
   var messageData = {
     attachment: {
       type: "template",
@@ -25,7 +26,7 @@ export function sendBubbles (recipientId, bubbles) {
   sendMessageRequestToFacebook(recipientId, messageData);
 };
 
-export function sendButtons (recipientId, text, buttons) {
+export function sendButtons(recipientId, text, buttons) {
   var messageData = {
     attachment: {
       type: "template",
@@ -40,26 +41,19 @@ export function sendButtons (recipientId, text, buttons) {
   sendMessageRequestToFacebook(recipientId, messageData);
 };
 
-export function sendMessageRequestToFacebook (recipientId, msgData) {
+export function sendMessageRequestToFacebook(recipientId, msgData) {
   var requestData = {
     recipient: {id: recipientId},
     message: msgData
   };
 
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages?access_token=' + settings.FB_PAGE_TOKEN,
-    method: 'POST',
+  var url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + settings.FB_PAGE_TOKEN;
+  var result = HTTP.post(url, {
     headers: {
       "content-type": "application/json"
     },
-    body: JSON.stringify(requestData)
-  }, function (error, response, body) {
-    if (error) {
-      console.log('Error sending message: ', error);
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error);
-    } else {
-      console.log(body);
-    }
+    data : requestData
   });
+
+  console.log('Post result', result);
 };
