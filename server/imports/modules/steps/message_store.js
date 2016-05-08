@@ -22,6 +22,8 @@ export var parseData = function (data, fatherKey) {
     var buttonText = data.button.text;
     msgData = generateButtonsMessageData(buttonText, buttons);
     msgData.externalData = {type: 'text', text: data.text}
+  } else if (data.type == 'image') {
+    msgData = generateImageMessageData(data.image);
   }
   messagesStore[fatherKey] = msgData;
 };
@@ -74,6 +76,16 @@ var generateBubblesMessageData = function (bubbles) {
   };
 };
 
+var generateImageMessageData = function (imageUrl) {
+  return {
+    "attachment": {
+      "type": "image",
+      "payload": {
+        "url": imageUrl
+      }
+    }
+  };
+};
 
 
 
