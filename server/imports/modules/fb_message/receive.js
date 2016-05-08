@@ -24,6 +24,7 @@ export function handleFbMessageEvent(event) {
   // Ask for location
   if (myCase.step == 2) {
     sendShareLocationMessage(senderId);
+    console.log('raiseStep -- in 2 ', myCase.step);
     raiseStep(senderId);
     // Save payload
     Cases.update({senderId}, {$set: {payload: postback && postback.payload}});
@@ -43,6 +44,8 @@ export function handleFbMessageEvent(event) {
     }
     // Ask for phone number
     sendSharePhoneNumber(senderId);
+    console.log('raiseStep -- in 3 ', myCase.step);
+
     raiseStep(senderId);
     return;
   }
@@ -50,6 +53,8 @@ export function handleFbMessageEvent(event) {
   if (myCase.step == 4) {
     // validate phone number
     Cases.update({senderId}, {$set: {phoneNumber: text}});
+    console.log('raiseStep -- in 4 ', myCase.step);
+
     raiseStep(senderId);
 
     // Debug
@@ -57,6 +62,8 @@ export function handleFbMessageEvent(event) {
     return;
   }
   // raise step
+  console.log('raiseStep -- outside', myCase.step);
+
   raiseStep(senderId);
   console.log('DEBUG - case after', Cases.findOne({senderId}));
 
