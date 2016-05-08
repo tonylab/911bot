@@ -20,6 +20,7 @@ export function handleFbMessageEvent(event) {
   }
 
   var myCase = getCase(senderId);
+  console.log('myCase', myCase);
   // Ask for location
   if (myCase.step == 2) {
     sendShareLocationMessage(senderId);
@@ -57,6 +58,8 @@ export function handleFbMessageEvent(event) {
   }
   // raise step
   raiseStep(senderId);
+  console.log('DEBUG - case after', Cases.findOne({senderId}));
+
 
   if (text) {
     handleFbText(senderId, text);
