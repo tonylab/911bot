@@ -11,9 +11,12 @@ import {getCase, Cases} from '../../../../lib/collections/cases_collection.js';
 export function handleFbMessageEvent(event) {
   var senderId = event.sender.id;
   var postback = event.postback;
+  var attachment;
   if (event.message) {
     var text = event.message.text;
-    var attachment = event.message.attachments && event.message.attachments[0];
+    if (event.message.attachments) {
+      attachment = event.message.attachments[0];
+    }
   }
 
   var myCase = getCase(senderId);
@@ -33,7 +36,7 @@ export function handleFbMessageEvent(event) {
   } else if (postback) {
     handleFbPostback(senderId, postback);
   } else if (attachment) {
-    handleFbAttachment(senderId, event.message.attachments[0]);
+    handleFbAttachment(senderId, attachment);
   }
 };
 
