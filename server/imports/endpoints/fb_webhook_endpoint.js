@@ -16,7 +16,7 @@ export function challengeToken (req, res) {
 
 export function handleIncomingMessage (req, res) {
   JsonRoutes.sendResult(res, {});
-
+  
   var messagingEvents = req.body.entry[0].messaging;
   console.log('Got message: ', JSON.stringify(req.body));
   messagingEvents.forEach(event => {
