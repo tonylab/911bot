@@ -42,9 +42,16 @@ export function sendButtons(recipientId, text, buttons) {
 };
 
 export function sendMessageRequestToFacebook(recipientId, msgData) {
+  var newMsgData = msgData;
+  if (msgData && msgData.externalData) {
+    sendTextMessage(recipientId, msgData.externalData.text);
+    newMsgData = Object.assign({}, msgData);
+    delete newMsgData.externalData;
+  }
+
   var requestData = {
     recipient: {id: recipientId},
-    message: msgData
+    message: newMsgData
   };
 
   var url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + settings.FB_PAGE_TOKEN;
