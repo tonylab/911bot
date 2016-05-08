@@ -31,10 +31,6 @@ export function handleFbMessageEvent(event) {
 
   switch (myCase.step) {
     case 0:
-      sendWelcomeMessage(senderId);
-      raiseStep(myCase, senderId);
-      break;
-    case 1:
       if (!postback) {
         //sendWelcomeMessage(senderId)
       } else {
@@ -42,7 +38,7 @@ export function handleFbMessageEvent(event) {
         raiseStep(myCase, senderId);
       }
       break;
-    case 2:
+    case 1:
       if (!postback) {
         // IGNORE FOR NOW
       } else {
@@ -52,7 +48,7 @@ export function handleFbMessageEvent(event) {
       }
       return;
       break;
-    case 3:
+    case 2:
       // Check if we got location
       var location = attachment && attachment.type && attachment.type == 'location' && getCoordinates(attachment);
       if (!location) {
@@ -63,7 +59,7 @@ export function handleFbMessageEvent(event) {
         raiseStep(myCase, senderId);
       }
       break;
-    case 4:
+    case 3:
       // validate phone number
       updateCase({_id: myCase._id}, {$set: {phoneNumber: text}});
       generateCaseMessage(myCase._id);
@@ -73,7 +69,7 @@ export function handleFbMessageEvent(event) {
       handleFbPostback(caseId, senderId, {payload: myCase.step2Payload});
       return;
       break;
-    case 5:
+    case 4:
       if (postback) {
         handleFbPostback(caseId, senderId, postback);
       } else if (attachment) {
