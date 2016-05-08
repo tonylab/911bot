@@ -31,8 +31,8 @@ export function handleFbMessageEvent(event) {
 
   switch (myCase.step) {
     case 0:
-      if (!postback) {
-        //sendWelcomeMessage(senderId)
+      if (!postback && text) {
+        sendWelcomeMessage(senderId)
       } else {
         handleFbPostback(caseId, senderId, postback);
         raiseStep(myCase, senderId);
