@@ -1,6 +1,6 @@
 import {messagesStore, initialMessageConst} from '../steps/message_store.js';
 import {sendMessageRequestToFacebook, sendTextMessage} from './send.js';
-import {getCase, Cases} from '../../../../lib/collections/cases_collection.js';
+import {getCase, Cases, updateCase} from '../../../../lib/collections/cases_collection.js';
 
 /**
  * Handle new incoming message from facebook
@@ -11,68 +11,75 @@ import {getCase, Cases} from '../../../../lib/collections/cases_collection.js';
 export function handleFbMessageEvent(event) {
   var senderId = event.sender.id;
   var postback = event.postback;
-  var attachment;
+  var attachment, text;
   if (event.message) {
-    var text = event.message.text;
+    text = event.message.text;
     if (event.message.attachments) {
       attachment = event.message.attachments[0];
     }
   }
 
   var myCase = getCase(senderId);
-
   // Ask for location
-  if (myCase.step == 2) {
-    sendShareLocationMessage(senderId);
-    raiseStep(senderId);
-    // Save payload
-    Cases.update({senderId}, {$set: {payload: postback && postback.payload}});
-    return;
-  }
-  // Ask for phone number
-  if (myCase.step == 3) {
-    // Check if we haven't received location
-    if (!attachment || attachment.type != 'location') {
-      sendShareLocationMessage(senderId);
+  console.log('## myCase step =' + myCase.step);
+
+  switch (myCase.step) {
+    case 0:
+      sendWelcomeMessage(senderId);
+      raiseStep(myCase, senderId);
+      break;
+    case 1:
+      if(!postback) {
+        sendWelcomeMessage(senderId)
+      } else {
+        handleFbPostback(senderId, postback);
+        raiseStep(myCase, senderId);
+      }
+      break;
+    case 2:
+      if(!postback) {
+        // IGNORE FOR NOW
+      } else {
+        sendShareLocationMessage(senderId);
+        updateCase({_id: myCase._id}, {$set: {step2Payload: postback && postback.payload}})
+        raiseStep(myCase, senderId);
+      }
       return;
-    }
-    var location = getCoordinates(attachment);
-    if (location) {
-      // Save location
-      Cases.update({senderId}, {$set: location});
-    }
-    // Ask for phone number
-    sendSharePhoneNumber(senderId);
-    raiseStep(senderId);
-    return;
+      break;
+    case 3:
+      // Check if we got location
+      var location = attachment && attachment.type && attachment.type == 'location' && getCoordinates(attachment);
+      if (!location) {
+        sendShareLocationMessage(senderId);
+      } else {
+        updateCase({_id: myCase._id}, {$set: location});
+        sendSharePhoneNumber(senderId);
+        raiseStep(myCase, senderId);
+      }
+      break;
+    case 4:
+      // validate phone number
+      updateCase({_id: myCase._id}, {$set: {phoneNumber: text}});
+      raiseStep(myCase, senderId);
+      return;
+      break;
+    
   }
-  // Receive phone number
-  if (myCase.step == 4) {
-    // validate phone number
-    Cases.update({senderId}, {$set: {phoneNumber: text}});
-    raiseStep(senderId);
-    return;
-  }
-  // raise step
-  raiseStep(senderId);
-
-
-  if (text) {
-    handleFbText(senderId, text);
-  } else if (postback) {
-    handleFbPostback(senderId, postback);
-  } else if (attachment) {
-    handleFbAttachment(senderId, attachment);
-  }
+  console.log('## DEBUG - after all switch cases:', Cases.findOne({senderId}));
 };
 
-var raiseStep = function (senderId) {
-  Cases.update({senderId}, {$inc: {step: 1}});
+var raiseStep = function (myCase, senderId) {
+  updateCase({_id: myCase._id}, {$inc: {step: 1}});
+};
+
+var sendWelcomeMessage = function (senderId) {
+  sendMessageRequestToFacebook(senderId, messagesStore[initialMessageConst]);
 };
 
 var handleFbText = function (senderId, text) {
   sendMessageRequestToFacebook(senderId, messagesStore[initialMessageConst]);
 };
+
 
 var handleFbPostback = function (senderId, postback) {
   var payload = postback && postback.payload;
