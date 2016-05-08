@@ -20,13 +20,18 @@ export default {
                 timeout: 10000,
                 bubbles: [
                   {
-                    title: '1.Check the other person(s) for injuries',
-                    subtitle: 'If other people are injured, first assess the extent of his/ her injuries.',
-                    buttons: [{
-                      payloadKey: 'HOW TO ASSES',
-                      title: 'HOW TO ASSES'
+                    title: '1.Deal with open wounds',
+                    subtitle: 'If there are extensive wounds, control the bleeding using pressure to the area using a cloth.',
+                    buttons:[{
+                      payloadKey: 'pressureImg',
+                      title: 'Apply pressure',
+                      innerStep : {
+                        type: 'image',
+                        image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462702006/pressure_v38ahv.jpg'
+                      }
                     }]
-                  },
+                  }
+                  ,
                   {
                     title: '2.Look for signs of breathing',
                     subtitle: 'check if the person is breathing and if he has a pulse.'
@@ -58,29 +63,40 @@ export default {
                     subtitle: 'If there is bleeding from the mouth or vomiting, turn the person to his side.'
                   },
                   {
-                    title: '5.Deal with open wounds',
-                    subtitle: 'If there are extensive wounds, control the bleeding using pressure to the area using a cloth.',
-                    buttons:[{
-                      payloadKey: 'pressureImg',
-                      title: 'Apply pressure',
-                      innerStep : {
-                        type: 'image',
-                        image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462702006/pressure_v38ahv.jpg'
-                      }
-                    }]
-                  }
-                  ,
-                  {
-                    title: '6.Keep the person warm',
+                    title: '5.Keep the person warm',
                     subtitle: 'keeping them warm is essential to survival. You can use whatever you have to do this, such as a T-shirt, jacket, etc.'
                   },
                   {
-                    title: '7.Avoid feeding the person',
+                    title: '6.Avoid feeding the person',
                     subtitle: 'Do not provide any fluid or food. it could lead to choking.'
                   }
                 ]
               }
             }]
+          },
+          {
+            title: 'Cardiac Arrest',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462702964/cardiacA_tlunep.jpg',
+            buttons: [
+              {
+                payloadKey: 'A Cardiac arrest',
+                title: 'Report',
+                innerStep : {
+                  type: 'image',
+                  image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462696950/cpr_j17pcn.jpeg'
+                }
+              }
+            ]
+          },
+          {
+            title: 'Health Emergency',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675406/medical_emergency_wgcxcg.jpg',
+            buttons: [
+              {
+                payloadKey: 'A Health Emergency',
+                title: 'Report'
+              }
+            ]
           },
           {
             title: 'Violence',
@@ -89,24 +105,6 @@ export default {
               payloadKey: 'A Violence',
               title: 'Report'
             }]
-          },
-          {
-            title: 'Health Emergency',
-            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675406/medical_emergency_wgcxcg.jpg',
-            buttons: [
-              {
-                payloadKey: 'A Cardiac arrest',
-                title: 'Cardiac arrest',
-                innerStep : {
-                  type: 'image',
-                  image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462696950/cpr_j17pcn.jpeg'
-                }
-              },
-              {
-                payloadKey: 'A Health Emergency',
-                title: 'Others'
-              }
-            ]
           },
           {
             title: 'Fire',
