@@ -3,7 +3,7 @@ export default {
   text: 'Please choose:',
   buttons: [
     {
-      text: "Life threatening",
+      title: "Life threatening",
       innerStep: {
         type: 'bubbles',
         bubbles: [
@@ -37,7 +37,7 @@ export default {
       }
     },
     {
-      text: "Not life threatening",
+      title: "Not life threatening",
       innerStep: {
         type: 'bubbles',
         bubbles: [
