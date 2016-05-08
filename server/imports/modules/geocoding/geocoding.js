@@ -17,7 +17,7 @@ export function locationToAddress(location) {
         throw new Meteor.Error('cannot generate token');
     }
 
-    const locationStr = `${location.lat}, ${location.long}`
+    const locationStr = `${location.long},${location.lat}`
     console.log('##token', token,'locationStr',locationStr);
     let response = HTTP.get(API_URLS.reverseGeoCoding, {
         params: {
@@ -26,6 +26,7 @@ export function locationToAddress(location) {
             location: locationStr
         }
     });
+    console.log('response',response)
     let content = JSON.parse(response.content)
     if(content.error) {
         throw new Meteor.Error('Error finding address');
