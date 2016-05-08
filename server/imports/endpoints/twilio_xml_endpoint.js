@@ -94,6 +94,12 @@ export function callStep2 (req, res) {
                     },
                     caseObj.phoneNumber
                 ]
+            },
+            {
+                Play: [
+                    {_attr: {loop: 1}},
+                    'https://api.twilio.com/cowbell.mp3'
+                ]
             }
         ]
     };
