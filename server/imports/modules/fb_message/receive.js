@@ -24,7 +24,8 @@ export function handleFbMessageEvent(event) {
     }
   }
 
-  var myCase = getCase(senderId);
+  var myCase = getCase(senderId),
+    caseId = myCase._id;
   // Ask for location
   console.log('## myCase step =' + myCase.step);
 
@@ -37,7 +38,7 @@ export function handleFbMessageEvent(event) {
       if(!postback) {
         //sendWelcomeMessage(senderId)
       } else {
-        handleFbPostback(senderId, postback);
+        handleFbPostback(caseId, senderId, postback);
         raiseStep(myCase, senderId);
       }
       break;
@@ -69,11 +70,11 @@ export function handleFbMessageEvent(event) {
       callClient.makeCall(myCase._id);
       raiseStep(myCase, senderId);
       sendConnectingYouWith911Message(senderId);
-      handleFbPostback(senderId, {payload: myCase.step2Payload});
+      handleFbPostback(caseId, senderId, {payload: myCase.step2Payload});
       return;
       break;
     case 5:
-      handleFbPostback(senderId, postback);
+      handleFbPostback(caseId, senderId, postback);
       break;
   }
   console.log('## DEBUG - after all switch cases step=', Cases.findOne(myCase._id).step);
@@ -93,10 +94,13 @@ var handleFbText = function (senderId, text) {
 };
 
 
-var handleFbPostback = function (senderId, postback) {
+var handleFbPostback = function (caseId, senderId, postback) {
   var payload = postback && postback.payload;
   if (!messagesStore[payload]) {
     return;
+  }
+  if (caseId) {
+    updateCase({_id: caseId}, {$set: {lastPayload: postback && postback.payload}})
   }
   sendMessageRequestToFacebook(senderId, messagesStore[payload]);
 };
