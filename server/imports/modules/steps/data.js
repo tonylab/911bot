@@ -9,35 +9,44 @@ export default {
         type: 'bubbles',
         bubbles: [
           {
-            title: 'Traffic Accident',
-            payloadKey: '11TrafficAccident',
+            title: '',
             image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1461712951/Premier_League_2013-14_slider_gnxdpg.png',
-            buttons: null
+            buttons: [{
+              payloadKey: '11TrafficAccident',
+              title: 'Traffic Accident'
+            }]
           },
           {
-            title: 'Violence',
-            payloadKey: '12Violence',
+            title: '',
             image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1461712951/Premier_League_2013-14_slider_gnxdpg.png',
-            buttons: null
+            buttons: [{
+              payloadKey: '12Violence',
+              title: 'Violence'
+            }]
           },
           {
-            title: 'Health Emergency',
-            payloadKey: '13HealthEmergency',
+            title: '',
             image: 'https://drive.google.com/open?id=0B4s176m3ZUdMZzlvbFVRZC1ubDA',
-            buttons: null
+            buttons: [{
+              payloadKey: '13HealthEmergency',
+              title: 'Health Emergency'
+            }]
           },
           {
-            title: 'Fire',
-            payloadKey: '14Fire',
+            title: '',
             image: 'https://drive.google.com/open?id=0B4s176m3ZUdMQ2U5MzVIVzVqbTQ',
-            buttons: null
+            buttons: [{
+              payloadKey: '14Fire',
+              title: 'Fire'
+            }]
           },
           {
-            title: 'Other',
-            payloadKey: '15Other',
+            title: '',
             image: 'https://drive.google.com/open?id=0B4s176m3ZUdMLUU4U196OWNCb2c',
-            buttons: null
-
+            buttons: [{
+              payloadKey: '15Other',
+              title: 'Other'
+            }]
           }
         ]
       }
@@ -49,40 +58,53 @@ export default {
         type: 'bubbles',
         bubbles: [
           {
-            title: 'Traffic reporting',
-            payloadKey: '21TrafficReporting',
+            title: '',
             image: 'https://drive.google.com/open?id=0B4s176m3ZUdMMURWcDJ3dzRmb2s',
-            buttons: null
+            buttons: [{
+              payloadKey: '21TrafficReporting',
+              title: 'Traffic reporting'
+            }]
           },
           {
-            title: 'Disturbances',
-            payloadKey: '22Disturbances',
+            title: '',
             image: 'https://drive.google.com/open?id=0B4s176m3ZUdMcEV2MFMtcmZEOUU',
-            buttons: null
+            buttons: [{
+              payloadKey: '22Disturbances',
+              title: 'Disturbances'
+            }]
           },
           {
-            title: 'Alarms',
-            payloadKey: '23Alarms',
+            title: '',
             image: 'https://drive.google.com/open?id=0B4s176m3ZUdMVG82Z2JSbEl4TDg',
-            buttons: null
+            buttons: [{
+              payloadKey: '23Alarms',
+              title: 'Alarms'
+            }]
           },
           {
-            title: 'Welfare checks',
+            title: '',
             payloadKey: '24WelfareChecks',
             image: 'https://drive.google.com/open?id=0B4s176m3ZUdMZEtOV2Jlejhzdkk',
-            buttons: null
+            buttons: [{
+              payloadKey: '24WelfareChecks',
+              title: 'Welfare Checks'
+            }]
           },
           {
-            title: 'Civil problems',
-            payloadKey: '25CivilProblems',
+            title: '',
             image: 'https://drive.google.com/open?id=0B4s176m3ZUdMNUNCX01BenF3NVU',
-            buttons: null
+            buttons: [{
+              payloadKey: '25CivilProblems',
+              title: 'Civil problems'
+            }]
           },
           {
-            title: 'Other',
-            payloadKey: '26Other',
+            title: '',
             image: 'https://drive.google.com/open?id=0B4s176m3ZUdMLUU4U196OWNCb2c',
-            buttons: null
+            buttons: [{
+              payloadKey: '26Other',
+              title: 'Other'
+            }]
           }
         ]
       }
