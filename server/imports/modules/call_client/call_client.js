@@ -1,6 +1,6 @@
 'use strict';
 
-import * as twilio from 'twilio';
+import twilio from 'twilio';
 import cases from '../cases_global';
 
 export default class CallClient {
@@ -20,7 +20,11 @@ export default class CallClient {
             from: this.twilioVerifiedPhoneNumber,
             url: url
         }, function(err, responseData) {
-            console.log(`Call created from ${responseData.from} to ${responseData.to} with url ${url}`);
+            if(err) {
+                console.error('Error making call',err);
+            } else {
+                console.log(`Call created from ${responseData.from} to ${responseData.to} with url ${url}`);
+            }
         });
     }
 }
