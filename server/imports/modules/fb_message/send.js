@@ -1,9 +1,6 @@
 'use strict';
 
-var request = require('request'),
-  moment = require('moment'),
-  settings = require('../settings');
-
+import settings from '../settings'
 
 export function sendTextMessage (recipientId, msgTxt) {
   var messageData = {
