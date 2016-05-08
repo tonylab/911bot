@@ -1,4 +1,4 @@
-import {messagesStore, initialMessageConst} from './send.js';
+import {messagesStore, initialMessageConst} from '../steps/message_store.js';
 import {sendMessageRequestToFacebook} from './send.js';
 
 /**
