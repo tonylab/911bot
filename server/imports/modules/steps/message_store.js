@@ -27,7 +27,7 @@ export var parseData = function (data, fatherKey) {
   } else if (data.type == 'imageAndBubble') {
     var bubbles = makeBubblesFromData(data.bubbles);
     msgData = generateBubblesMessageData(bubbles);
-    msgData.externalData = {type: 'image', text: data.image};
+    msgData.externalData = {type: 'image', image: data.image, timeout: data.timeout};
   }
   messagesStore[fatherKey] = msgData;
 };
