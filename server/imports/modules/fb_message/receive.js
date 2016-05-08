@@ -69,6 +69,7 @@ export function handleFbMessageEvent(event) {
 };
 
 var raiseStep = function (myCase, senderId) {
+  console.log ("## raiseStep of case id = " + myCase._id);
   updateCase({_id: myCase._id}, {$inc: {step: 1}});
 };
 
