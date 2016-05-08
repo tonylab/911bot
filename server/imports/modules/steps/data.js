@@ -10,7 +10,7 @@ export default {
         bubbles: [
           {
             title: '',
-            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1461712951/Premier_League_2013-14_slider_gnxdpg.png',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675405/car_accident_suyuj6.jpg',
             buttons: [{
               payloadKey: '11TrafficAccident',
               title: 'Traffic Accident'
@@ -18,7 +18,7 @@ export default {
           },
           {
             title: '',
-            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1461712951/Premier_League_2013-14_slider_gnxdpg.png',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675406/violence_zo9wkq.jpg',
             buttons: [{
               payloadKey: '12Violence',
               title: 'Violence'
@@ -26,7 +26,7 @@ export default {
           },
           {
             title: '',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMZzlvbFVRZC1ubDA',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675406/medical_emergency_wgcxcg.jpg',
             buttons: [{
               payloadKey: '13HealthEmergency',
               title: 'Health Emergency'
@@ -34,7 +34,7 @@ export default {
           },
           {
             title: '',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMQ2U5MzVIVzVqbTQ',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675405/fire_jmiwgn.jpg',
             buttons: [{
               payloadKey: '14Fire',
               title: 'Fire'
@@ -42,7 +42,7 @@ export default {
           },
           {
             title: '',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMLUU4U196OWNCb2c',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675405/911_csojjm.png',
             buttons: [{
               payloadKey: '15Other',
               title: 'Other'
@@ -59,7 +59,7 @@ export default {
         bubbles: [
           {
             title: '',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMMURWcDJ3dzRmb2s',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675406/trafic_hazard_bcieys.png',
             buttons: [{
               payloadKey: '21TrafficReporting',
               title: 'Traffic reporting'
@@ -67,7 +67,7 @@ export default {
           },
           {
             title: '',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMcEV2MFMtcmZEOUU',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675405/disturbance_d4q9a0.jpg',
             buttons: [{
               payloadKey: '22Disturbances',
               title: 'Disturbances'
@@ -75,7 +75,7 @@ export default {
           },
           {
             title: '',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMVG82Z2JSbEl4TDg',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675405/alarms_djx1rq.jpg',
             buttons: [{
               payloadKey: '23Alarms',
               title: 'Alarms'
@@ -84,7 +84,7 @@ export default {
           {
             title: '',
             payloadKey: '24WelfareChecks',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMZEtOV2Jlejhzdkk',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675406/wellfare_nsos3h.jpg',
             buttons: [{
               payloadKey: '24WelfareChecks',
               title: 'Welfare Checks'
@@ -92,7 +92,7 @@ export default {
           },
           {
             title: '',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMNUNCX01BenF3NVU',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675405/civil_jugopw.jpg',
             buttons: [{
               payloadKey: '25CivilProblems',
               title: 'Civil problems'
@@ -100,7 +100,7 @@ export default {
           },
           {
             title: '',
-            image: 'https://drive.google.com/open?id=0B4s176m3ZUdMLUU4U196OWNCb2c',
+            image: 'http://res.cloudinary.com/hqkcoueyo/image/upload/v1462675405/911_csojjm.png',
             buttons: [{
               payloadKey: '26Other',
               title: 'Other'
