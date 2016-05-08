@@ -1,6 +1,6 @@
 import {messagesStore, initialMessageConst} from '../steps/message_store.js';
-import {sendMessageRequestToFacebook} from './send.js';
-import {getCase} from '../../../../lib/collections/cases_collection.js';
+import {sendMessageRequestToFacebook, sendTextMessage} from './send.js';
+import {getCase, Cases} from '../../../../lib/collections/cases_collection.js';
 
 /**
  * Handle new incoming message from facebook
@@ -16,6 +16,18 @@ export function handleFbMessageEvent(event) {
     var attachment = event.message.attachments && event.message.attachments[0];
   }
 
+  var myCase = getCase();
+  console.log('Case', myCase);
+  Cases.update({senderId}, {$inc: {step: 1}});
+  if (myCase.step == 2) {
+    sendShareLocationMessage(senderId);
+    return;
+  }
+
+  if (myCase.step == 3) {
+    // Receive location.
+    console.log('receive location', attachment, postback, text);
+  }
   if (text) {
     handleFbText(senderId, text);
   } else if (postback) {
@@ -26,16 +38,17 @@ export function handleFbMessageEvent(event) {
 };
 
 var handleFbText = function (senderId, text) {
-  var curCase = getCase(senderId);
-  if (!curCase) {
-    sendMessageRequestToFacebook(senderId, messagesStore[initialMessageConst]);
-  }
+  sendMessageRequestToFacebook(senderId, messagesStore[initialMessageConst]);
 };
 
 var handleFbPostback = function (senderId, postback) {
   var payload = postback && postback.payload;
   console.log('receive payload', payload);
   sendMessageRequestToFacebook(senderId, messagesStore[payload]);
+};
+
+var sendShareLocationMessage = function (senderId) {
+  sendTextMessage(senderId, 'Please share with us your collection');
 };
 
 var handleFbAttachment = function (senderId, attachment) {
