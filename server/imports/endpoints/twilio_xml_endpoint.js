@@ -64,7 +64,7 @@ export function callStep1(req, res) {
       ]
   };
 
-  JsonRoutes.sendResult(res, {headers: {'Content-Type': 'text/xml'}, data: xml(xmlResponse)});
+  JsonRoutes.sendPlainResult(res, {headers: {'Content-Type': 'text/xml'}, data: xml(xmlResponse)});
 }
 
 export function callStep2 () {
@@ -75,5 +75,5 @@ export function testEndpoint (req, res) {
     let xmlUrl = `${settings.BASE_URI}/twilio/call/step1`
     var client = new Call911Client('ACfb01ca8a5e0434e4e2bc38e9cd035b42', 'fb5566a6caae9ef9f4b75d1ef6cf5999', '+13342460557', xmlUrl, '+972525444544');
     client.makeCall('test');
-    JsonRoutes.sendResult(res, {headers: {'Content-Type': 'text'}, data: `Made call to case id: test with xml url = ${xmlUrl}`});
+    JsonRoutes.sendPlainResult(res, {headers: {'Content-Type': 'text'}, data: `Made call to case id: test with xml url = ${xmlUrl}`});
 }
