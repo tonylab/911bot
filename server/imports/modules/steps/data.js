@@ -59,7 +59,7 @@ export default {
                   },
                   {
                     title: '5.Deal with open wounds',
-                    subtitle: 'If there are extensive wounds, control the bleeding using pressure to the area using a cloth.',
+                    subtitle: 'If there are extensive wounds, control the bleeding using pressure to the area.',
                     buttons:[{
                       payloadKey: 'pressureImg',
                       title: 'Apply pressure',
@@ -72,7 +72,7 @@ export default {
                   ,
                   {
                     title: '6.Keep the person warm',
-                    subtitle: 'keeping them warm is essential to survival. You can use whatever you have to do this, such as a T-shirt, jacket, etc.'
+                    subtitle: 'keeping them warm is essential to survival. You can use whatever you have.'
                   },
                   {
                     title: '7.Avoid feeding the person',

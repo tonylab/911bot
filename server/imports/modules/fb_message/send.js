@@ -55,18 +55,14 @@ export function sendButtons(recipientId, text, buttons) {
 
 export function sendMessageRequestToFacebook(recipientId, msgData) {
   var newMsgData = msgData;
+  var timeout;
   if (msgData && msgData.externalData) {
     var externalType = msgData.externalData.type;
     if (externalType == 'text') {
       sendTextMessage(recipientId, msgData.externalData.text);
     } else if (externalType == 'image') {
-      if (msgData.externalData.timeout) {
-        Meteor.setTimeout(() => {
-          sendImageMessage(recipientId, msgData.externalData.image);
-        }, msgData.externalData.timeout);
-      } else {
-        sendImageMessage(recipientId, msgData.externalData.image);
-      }
+      timeout = msgData.externalData.timeout;
+      sendImageMessage(recipientId, msgData.externalData.image);
     }
     newMsgData = Object.assign({}, msgData);
     delete newMsgData.externalData;
@@ -78,6 +74,17 @@ export function sendMessageRequestToFacebook(recipientId, msgData) {
   };
 
   var url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + settings.FB_PAGE_TOKEN;
+  if (timeout) {
+    Meteor.setTimeout(()=> {
+      var result = HTTP.post(url, {
+        headers: {
+          "content-type": "application/json"
+        },
+        data: requestData
+      });
+    }, timeout);
+    return;
+  }
   var result = HTTP.post(url, {
     headers: {
       "content-type": "application/json"
