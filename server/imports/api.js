@@ -8,8 +8,8 @@ export function api() {
     JsonRoutes.add("get", "/twilio/call/step1", twilioXmlEndpoint.callStep1);
     JsonRoutes.add("post", "/twilio/call/step1", twilioXmlEndpoint.callStep1);
 
-    JsonRoutes.add("get", "/twilio/call/step2", twilioXmlEndpoint.callStep1);
-    JsonRoutes.add("post", "/twilio/call/step2", twilioXmlEndpoint.callStep1);
+    JsonRoutes.add("get", "/twilio/call/step2", twilioXmlEndpoint.callStep2);
+    JsonRoutes.add("post", "/twilio/call/step2", twilioXmlEndpoint.callStep2);
 
     JsonRoutes.add("get", "/twilio/test", twilioXmlEndpoint.testEndpoint);
 }
